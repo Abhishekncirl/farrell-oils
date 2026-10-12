@@ -17,7 +17,8 @@ service cloud.firestore {
     function isAdmin() {
       return request.auth != null
         && request.auth.token.email in [
-          'ADMIN_EMAIL@example.com'
+          'farrelloils@gmail.com'
+          // Add more admins as extra lines, e.g. , 'name@example.com'
         ];
     }
 

@@ -44,7 +44,7 @@ which are covered by the free Spark plan.
 
 ## 4. Publish the security rules
 1. Open `firestore.rules` from this repo.
-2. Replace `ADMIN_EMAIL@example.com` with the admin's email address. Add more
+2. Check the admin email list in `isAdmin()` (currently `farrelloils@gmail.com`). Add more
    staff as extra entries, e.g. `'sean@example.ie', 'office@example.ie'`.
 3. In Firebase: **Firestore Database → Rules** tab → delete what's there →
    paste the edited rules → **Publish**.
