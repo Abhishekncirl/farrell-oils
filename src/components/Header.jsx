@@ -55,9 +55,9 @@ export default function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="container-page flex items-center justify-between gap-4 py-3">
+      <div className="container-page flex items-center justify-between gap-4 py-2">
         <Link to="/" className="shrink-0" aria-label="Farrell Oils home">
-          <Logo className="h-9 w-auto sm:h-11" />
+          <Logo className="h-16 w-auto sm:h-20 lg:h-24" />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">

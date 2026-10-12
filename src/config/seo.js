@@ -33,7 +33,8 @@ export function buildJsonLd() {
     url: `${site.url}/`,
     description: routeMeta('/').description,
     image: `${site.url}${site.images.ogImage}`,
-    logo: known(site.images.logo),
+    logo: `${site.url}${site.images.logo}`,
+    slogan: site.tagline,
     telephone: contact.phoneIntl,
     email: known(contact.email),
     address: {
@@ -100,8 +101,11 @@ export function buildManifest() {
       display: 'standalone',
       background_color: site.colors.white,
       theme_color: site.colors.brandBlue,
-      // [TODO: add 192x192 and 512x512 PNG icons once the real logo is supplied]
-      icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
+      icons: [
+        { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+        { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' },
+      ],
     },
     null,
     2,

@@ -14,8 +14,9 @@ export default function Footer() {
       <div className="bg-brand-blue text-white">
         <div className="container-page grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo inverted className="h-10 w-auto" />
-            <p className="mt-4 text-sm">{site.tagline}</p>
+            <div className="inline-block rounded-xl bg-white p-3">
+              <Logo className="h-20 w-auto" />
+            </div>
           </div>
 
           <div>

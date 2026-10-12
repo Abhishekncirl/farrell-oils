@@ -14,7 +14,7 @@ export const isTodo = (value) => typeof value === 'string' && value.startsWith('
 
 export const site = {
   name: 'Farrell Oils',
-  tagline: todo('confirm tagline'),
+  tagline: 'Fueling, Powering, Delivering',
 
   // Live URL, no trailing slash. Currently the GitHub Pages address.
   // [TODO: confirm domain name] Replace with the real domain once bought,
@@ -61,9 +61,9 @@ export const site = {
   },
 
   images: {
-    logo: todo('supply real logo file'),
-    // Must be a 1200x630 PNG/JPG once supplied; social sites do not accept SVG.
-    ogImage: '/og-image.png', // [TODO: supply OG image]
+    logo: '/logo.png',
+    // 1200x630, generated from the logo. Social sites do not accept SVG.
+    ogImage: '/og-image.png',
     ogImageAlt: 'Farrell Oils, fuel supplier in Carrickmacross, Co. Monaghan',
   },
 

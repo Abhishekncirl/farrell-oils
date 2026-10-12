@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Placeholder favicon: green oil drop. [TODO: replace with real logo mark] -->
+  <!-- Favicon: green oil drop from the logo. -->
   <path d="M32 3S10 30 10 42a22 22 0 0 0 44 0C54 30 32 3 32 3Z" fill="#3FA535"/>
   <path d="M32 3S10 30 10 42a22 22 0 0 0 22 22V3Z" fill="#2B7A2B" opacity=".35"/>
   <circle cx="32" cy="42" r="9" fill="#FFFFFF"/>
