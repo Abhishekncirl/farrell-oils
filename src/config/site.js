@@ -30,7 +30,7 @@ export const site = {
     phoneDisplay: '087 917 6881',
     phoneIntl: '+353 87 917 6881',
     phoneHref: 'tel:+353879176881',
-    email: todo('confirm email address'),
+    email: 'farrelloils@gmail.com',
   },
 
   address: {
@@ -48,9 +48,9 @@ export const site = {
   openingHours: [],
   openingHoursText: todo('confirm opening hours'),
 
-  // [TODO: confirm delivery area] e.g. ['Co. Monaghan', 'Co. Louth', 'Co. Cavan']
-  areaServed: [],
-  areaServedText: todo('confirm delivery area'),
+  // Confirmed by the client: delivery anywhere in Ireland.
+  areaServed: ['Ireland'],
+  areaServedText: 'We deliver all across Ireland.',
 
   // [TODO: confirm social media links] Add full URLs, leave empty to hide.
   social: {
@@ -67,33 +67,64 @@ export const site = {
     ogImageAlt: 'Farrell Oils, fuel supplier in Carrickmacross, Co. Monaghan',
   },
 
+  // Order here is the order on the site. `points` show as bullets on /products.
   products: [
     {
       slug: 'derv',
       name: 'Derv',
-      short: 'Road diesel for cars, vans, trucks and fleets.',
-      description: todo('Derv product description'),
+      accent: 'blue',
+      short: 'Clean, reliable road diesel for cars, vans, trucks and fleets. Keep your business on the road.',
     },
     {
       slug: 'petrol',
       name: 'Petrol',
-      short: 'Unleaded petrol.',
-      description: todo('Petrol product description'),
+      accent: 'blue',
+      short: 'Quality unleaded petrol for everyday driving and small machinery.',
     },
     {
       slug: 'gas-oil',
       name: 'Gas Oil',
-      short: 'Marked gas oil (green diesel) for agricultural and off-road use.',
-      description: todo('Gas Oil product description'),
+      accent: 'green',
+      short:
+        "Marked gas oil (green diesel) for tractors, plant and off-road machinery. Built for Monaghan's farms and sites.",
+    },
+    {
+      slug: 'hvo',
+      name: 'HVO',
+      accent: 'green',
+      short: 'HVO (Hydrotreated Vegetable Oil), a renewable alternative to diesel. Available in green and white.',
+      points: ['HVO Green: marked, for agricultural and off-road use', 'HVO White: for road vehicles'],
     },
     {
       slug: 'adblue',
       name: 'AdBlue',
       brand: 'BluePlus AdBlue',
-      short: 'BluePlus AdBlue for diesel engines with SCR systems.',
-      description: todo('AdBlue product description'),
+      accent: 'blue',
+      short: 'BluePlus AdBlue for modern diesel engines with SCR, keeping you compliant and running clean.',
+      points: ['Bulk AdBlue delivered by tanker', '1,000 litre IBCs'],
     },
   ],
+
+  // Marketing copy, approved by the client.
+  copy: {
+    heroHeading: 'Fuel you can count on, from people you know.',
+    heroIntro:
+      "Farrell Oils supplies Derv, Petrol, Gas Oil, HVO and BluePlus AdBlue to farms, businesses and homes from our base on Main Street, Carrickmacross. One call to Sean and it's sorted.",
+    productsIntro: 'Delivered all across Ireland.',
+    whyChooseUs: [
+      { title: 'Local', text: "Based in the O'Duffy Centre, Main Street, Carrickmacross." },
+      { title: 'One name, one number', text: 'You deal with Sean, not a switchboard.' },
+      { title: 'Straight pricing', text: 'Clear quotes with no surprises.' },
+      { title: 'Farm to fleet', text: 'From a top-up for the tractor to bulk diesel for your trucks.' },
+      { title: 'Nationwide delivery', text: 'We deliver all across Ireland.' },
+    ],
+    ctaHeading: 'Running low?',
+    ctaText: "Ring 087 917 6881 and we'll get you sorted.",
+    urgentHeading: 'Need fuel fast?',
+    urgentText: "Call 087 917 6881. We'll do our best to get to you quickly.",
+    quoteIntro:
+      "Tell us the product, the quantity and where it's going, and we'll come back to you with a price. Prefer to talk? Call 087 917 6881.",
+  },
 
   // Mirrors the tokens in src/index.css (@theme). Used for meta theme-color,
   // the web manifest and anywhere JS needs a colour.
@@ -121,6 +152,11 @@ export const site = {
     'gas oil',
     'green diesel',
     'AdBlue',
+    'HVO',
+    'HVO fuel Ireland',
+    'bulk AdBlue',
+    'AdBlue IBC',
+    'fuel delivery Ireland',
     'BluePlus AdBlue',
     'agricultural fuel',
     'commercial fuel',
@@ -148,7 +184,7 @@ export const routes = [
     name: 'Home',
     nav: 'Home',
     description:
-      'Farrell Oils, Carrickmacross, Co. Monaghan. Supplier of derv, petrol, gas oil and BluePlus AdBlue. Call 087 917 6881 for a fuel quote.',
+      'Farrell Oils, Carrickmacross, Co. Monaghan. Derv, petrol, gas oil, HVO and BluePlus AdBlue delivered across Ireland. Call 087 917 6881.',
     changefreq: 'weekly',
     priority: '1.0',
   },
@@ -157,7 +193,7 @@ export const routes = [
     name: 'Products',
     nav: 'Products',
     description:
-      'Derv, petrol, gas oil (green diesel) and BluePlus AdBlue from Farrell Oils in Carrickmacross, Co. Monaghan. Agricultural and commercial fuel.',
+      'Derv, petrol, gas oil, HVO green and white, and bulk BluePlus AdBlue (tanker or 1,000L IBC) from Farrell Oils. Delivered across Ireland.',
     changefreq: 'monthly',
     priority: '0.9',
   },
@@ -166,7 +202,7 @@ export const routes = [
     name: 'Get a Quote',
     nav: 'Get a Quote',
     description:
-      'Request a fuel quote from Farrell Oils for derv, petrol, gas oil or AdBlue. Serving Carrickmacross and Co. Monaghan. Or call 087 917 6881.',
+      'Request a fuel quote from Farrell Oils for derv, petrol, gas oil, HVO or AdBlue. Delivery across Ireland. Or call 087 917 6881.',
     changefreq: 'monthly',
     priority: '0.9',
   },

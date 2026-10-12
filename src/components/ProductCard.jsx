@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { DropIcon } from './icons.jsx';
 
-export default function ProductCard({ product, accent = 'green' }) {
-  const iconColour = accent === 'blue' ? 'text-brand-blue' : 'text-brand-green';
+export default function ProductCard({ product }) {
+  const iconColour = product.accent === 'blue' ? 'text-brand-blue' : 'text-brand-green';
   return (
     <article className="flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
       <DropIcon className={`h-12 w-8 ${iconColour}`} />

@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { site } from '../config/site.js';
 import { PhoneIcon } from './icons.jsx';
 
-/** "Need a delivery urgently?" style band with click-to-call. */
+/** Call-to-action band with click-to-call. */
 export default function CTASection({
-  heading = 'Need a delivery urgently?',
-  text = `Call ${site.contact.person} on ${site.contact.phoneDisplay}.`,
+  heading = site.copy.ctaHeading,
+  text = site.copy.ctaText,
 }) {
   return (
     <section aria-labelledby="cta-heading" className="bg-brand-green-dark text-white">

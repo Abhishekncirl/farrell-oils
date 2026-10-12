@@ -13,7 +13,7 @@ export default function GetAQuote() {
   return (
     <>
       <Seo path="/get-a-quote" />
-      <PageHeader title="Get a Quote" intro={`Fill in the form, or call ${site.contact.phoneDisplay}.`} />
+      <PageHeader title="Get a Quote" intro={site.copy.quoteIntro} />
 
       <div className="container-page py-16">
         <form onSubmit={handleSubmit} noValidate className="relative mx-auto grid max-w-2xl gap-5 sm:grid-cols-2">

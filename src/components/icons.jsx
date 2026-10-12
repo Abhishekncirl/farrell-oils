@@ -54,3 +54,9 @@ export const LockIcon = (props) => (
     <path d="M8 11V7a4 4 0 0 1 8 0v4" />
   </svg>
 );
+
+export const CheckIcon = (props) => (
+  <svg {...base} strokeWidth={3} {...props}>
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);

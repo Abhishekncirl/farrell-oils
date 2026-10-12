@@ -20,7 +20,7 @@ export function buildJsonLd() {
     : [{ '@type': 'OpeningHoursSpecification', description: site.openingHoursText }];
 
   const areaServed = site.areaServed.length
-    ? site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name }))
+    ? site.areaServed.map((name) => ({ '@type': name === 'Ireland' ? 'Country' : 'AdministrativeArea', name }))
     : site.areaServedText;
 
   const sameAs = Object.values(site.social).filter(Boolean);
