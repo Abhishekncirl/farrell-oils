@@ -81,6 +81,12 @@ Edit the email list in `firestore.rules`, publish it again (step 4), and add or
 delete the user under **Authentication → Users**.
 
 ## Updating the rules after a website change
-When `firestore.rules` changes in the repo (e.g. the Settings tab added
-`settings/site`), copy the whole file into **Firestore → Rules** again and
-**Publish**. Keep your admin email list as it is in the console.
+Rules are published from the repo with the Firebase CLI (a dev dependency):
+
+```bash
+npx firebase login:add        # once per computer, with the Google account that owns the project
+npx firebase login:use <that-account>   # once, inside this folder
+npm run deploy:rules
+```
+
+The console copy-paste method in step 4 still works if the CLI isn't set up.
