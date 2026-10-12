@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+/*
+ * Farrell Oils design tokens, sampled from the business card.
+ * Each token becomes a Tailwind utility (bg-brand-blue, text-brand-green-dark, ...)
+ * and a CSS variable (var(--color-brand-blue)). Keep in sync with site.colors.
+ *
+ * WCAG AA contrast on white (#FFF): normal text needs 4.5:1, large text 3:1.
+ *   brand-blue        #2F55A4  7.10  any text, buttons (white text on it 7.10)
+ *   brand-blue-light  #4A78C2  4.41  large text / logo / decoration only
+ *   brand-blue-dark   #1F3B75 10.82  hover for blue buttons and links
+ *   brand-green       #3FA535  3.16  icons, decoration, large text only
+ *   brand-green-dark  #2B7A2B  5.36  green text, green buttons (white text 5.36)
+ *   brand-green-deep  #1F5E1F  7.84  hover for green buttons
+ *   brand-green-light #A8D88A        backgrounds only (ink on it 8.99)
+ *   brand-text-green  #4CA64C  3.06  large subheadings only (as on the card)
+ *   ink               #1F2937 14.68  body text
+ */
+@theme {
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-blue: #2f55a4;
+  --color-brand-blue-light: #4a78c2;
+  --color-brand-blue-dark: #1f3b75;
+  --color-brand-green: #3fa535;
+  --color-brand-green-dark: #2b7a2b;
+  --color-brand-green-deep: #1f5e1f;
+  --color-brand-green-light: #a8d88a;
+  --color-brand-green-tint: #eef8e8;
+  --color-brand-text-green: #4ca64c;
+  --color-ink: #1f2937;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-blue);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* Use as "btn btn-primary" etc. */
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-colors;
+  }
+  .btn-primary {
+    @apply bg-brand-blue text-white hover:bg-brand-blue-dark;
+  }
+  .btn-secondary {
+    @apply bg-brand-green-dark text-white hover:bg-brand-green-deep;
+  }
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-brand-blue;
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  /* Visible marker for content still to be supplied. */
+  .placeholder {
+    @apply rounded-lg border-2 border-dashed border-brand-green-dark/40 bg-brand-green-tint p-4 text-sm text-brand-green-deep;
+  }
+}
