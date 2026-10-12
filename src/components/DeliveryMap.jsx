@@ -5,7 +5,9 @@ const [, , W, H] = VIEWBOX.split(' ').map(Number);
 const PADDED_VIEWBOX = `0 -10 ${W + 70} ${H + 20}`;
 
 const BASE = PLACES.Carrickmacross;
-const TOWNS = ['Donegal', 'Sligo', 'Galway', 'Athlone', 'Dublin', 'Limerick', 'Kerry', 'Cork', 'Waterford'];
+const TOWNS = ['Belfast', 'Donegal', 'Sligo', 'Galway', 'Athlone', 'Dublin', 'Limerick', 'Kerry', 'Cork', 'Waterford'];
+// East-coast towns whose label goes to the right, out over the sea.
+const LABEL_RIGHT = new Set(['Belfast']);
 
 // Gentle curve from the base to a town, bowed to one side.
 function route([x1, y1], [x2, y2]) {
@@ -47,7 +49,7 @@ export default function DeliveryMap({ className = '' }) {
 
         {TOWNS.map((town) => {
           const [x, y] = PLACES[town];
-          const labelLeft = x > 250;
+          const labelLeft = x > 250 && !LABEL_RIGHT.has(town);
           return (
             <g key={town}>
               <circle cx={x} cy={y} r="5" fill="#FFFFFF" stroke="var(--color-brand-blue)" strokeWidth="2.5" />

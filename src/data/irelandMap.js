@@ -43,5 +43,9 @@ export const PLACES = {
   "Athlone": [
     206.3,
     254.1
+  ],
+  "Belfast": [
+    356.6,
+    106.9
   ]
 };
