@@ -1,4 +1,5 @@
 import { site } from '../../config/site.js';
+import { useContact } from '../../context/ContactContext.jsx';
 import PageHeader from '../../components/PageHeader.jsx';
 
 /** Shared layout for the legal pages (Terms, Privacy). `draft` shows the review notice. */
@@ -32,7 +33,7 @@ export function LegalSection({ heading, children }) {
 
 /** Email and phone as links, for "contact us" lines. */
 export function ContactLinks() {
-  const { email, phoneDisplay, phoneHref } = site.contact;
+  const { email, phone, phoneHref } = useContact();
   return (
     <>
       <a href={`mailto:${email}`} className="font-bold text-brand-blue underline">
@@ -40,7 +41,7 @@ export function ContactLinks() {
       </a>{' '}
       or{' '}
       <a href={phoneHref} className="font-bold text-brand-blue underline">
-        {phoneDisplay}
+        {phone}
       </a>
     </>
   );

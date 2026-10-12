@@ -1,10 +1,12 @@
 import { site } from '../config/site.js';
+import { fillPhone, useContact } from '../context/ContactContext.jsx';
 import { useEnquiryForm } from '../hooks/useEnquiryForm.js';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import { Field, FormFooter, Honeypot } from '../components/form.jsx';
 
 export default function GetAQuote() {
+  const contact = useContact();
   const { status, errors, handleSubmit, isConfigured, reset } = useEnquiryForm({
     type: 'quote',
     detailFields: ['product', 'quantity', 'address', 'eircode'],
@@ -13,7 +15,7 @@ export default function GetAQuote() {
   return (
     <>
       <Seo path="/get-a-quote" />
-      <PageHeader title="Get a Quote" intro={site.copy.quoteIntro} />
+      <PageHeader title="Get a Quote" intro={fillPhone(site.copy.quoteIntro, contact)} />
 
       <div className="container-page py-16">
         <form onSubmit={handleSubmit} noValidate className="relative mx-auto grid max-w-2xl gap-5 sm:grid-cols-2">

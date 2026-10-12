@@ -55,8 +55,11 @@ service cloud.firestore {
         && str(request.resource.data.notes, 0, 2000);
     }
 
-    // ---- Site settings (opening hours) ----
-    // Public pages read settings/site; only admins can change it.
+    // ---- Site settings ----
+    // Public pages read settings/site (opening hours) and settings/contact;
+    // only admins can change them.
+
+    // Opening hours (settings/site).
     function validTime(t) {
       return t is string && t.matches('^([01][0-9]|2[0-3]):[0-5][0-9]$');
     }
@@ -81,9 +84,28 @@ service cloud.firestore {
         && d.updatedAt == request.time;
     }
 
+    // Contact details + sales reps (settings/contact).
+    function isValidContact(d) {
+      let fields = ['phone', 'email', 'building', 'street', 'locality', 'region',
+                    'eircode', 'salesReps', 'updatedAt'];
+      return d.keys().hasOnly(fields) && d.keys().hasAll(fields)
+        && str(d.phone, 7, 40)
+        && str(d.email, 3, 320)
+        && str(d.building, 0, 100)
+        && str(d.street, 0, 100)
+        && str(d.locality, 1, 100)
+        && str(d.region, 1, 100)
+        && str(d.eircode, 0, 10)
+        && d.salesReps is list && d.salesReps.size() <= 20
+        && d.updatedAt == request.time;
+    }
+
     match /settings/{docId} {
-      allow read: if docId == 'site';
-      allow create, update: if isAdmin() && docId == 'site' && isValidSettings(request.resource.data);
+      allow read: if docId in ['site', 'contact'];
+      allow create, update: if isAdmin() && (
+        (docId == 'site' && isValidSettings(request.resource.data))
+        || (docId == 'contact' && isValidContact(request.resource.data))
+      );
     }
 
     // Everything else is closed.

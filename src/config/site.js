@@ -132,11 +132,12 @@ export const site = {
       { title: 'Nationwide delivery', text: 'We deliver all across Ireland.' },
     ],
     ctaHeading: 'Running low?',
-    ctaText: `Ring ${PHONE} and we'll get you sorted.`,
+    // {phone} is replaced with the live number from Admin > Settings.
+    ctaText: "Ring {phone} and we'll get you sorted.",
     urgentHeading: 'Need fuel fast?',
-    urgentText: `Call ${PHONE}. We'll do our best to get to you quickly.`,
+    urgentText: "Call {phone}. We'll do our best to get to you quickly.",
     quoteIntro:
-      `Tell us the product, the quantity and where it's going, and we'll come back to you with a price. Prefer to talk? Call ${PHONE}.`,
+      "Tell us the product, the quantity and where it's going, and we'll come back to you with a price. Prefer to talk? Call {phone}.",
   },
 
   // Mirrors the tokens in src/index.css (@theme). Used for meta theme-color,

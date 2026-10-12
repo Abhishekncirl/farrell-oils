@@ -1,10 +1,11 @@
 /**
  * Site settings stored in Firestore at settings/site (currently opening hours).
- * Public pages read it with one small REST request (no SDK download);
+ * Public pages read it with one small REST request (see firestoreRest.js);
  * admin pages read and write it with the Firestore SDK.
  */
 import { site } from '../config/site.js';
-import { getDb, isFirebaseConfigured } from './firebase.js';
+import { getDb } from './firebase.js';
+import { getPublicDoc } from './firestoreRest.js';
 import { DAYS, isValidHours } from './openingHours.js';
 
 export const DEFAULT_HOURS = site.openingHours;
@@ -18,24 +19,9 @@ let publicHoursPromise;
 
 /** Live opening hours for public pages. Falls back to the defaults on any problem. */
 export function fetchPublicHours() {
-  if (!isFirebaseConfigured) return Promise.resolve(DEFAULT_HOURS);
-  publicHoursPromise ??= (async () => {
-    const project = import.meta.env.VITE_FIREBASE_PROJECT_ID;
-    const key = import.meta.env.VITE_FIREBASE_API_KEY;
-    const res = await fetch(
-      `https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents/${SETTINGS}/${SITE_DOC}?key=${key}`,
-    );
-    if (!res.ok) return DEFAULT_HOURS; // 404 until staff first save settings
-    const json = await res.json();
-    const days = json.fields?.hours?.mapValue?.fields ?? {};
-    const hours = Object.fromEntries(
-      DAYS.map(([k]) => {
-        const f = days[k]?.mapValue?.fields ?? {};
-        return [k, { closed: f.closed?.booleanValue, opens: f.opens?.stringValue, closes: f.closes?.stringValue }];
-      }),
-    );
-    return isValidHours(hours) ? hours : DEFAULT_HOURS;
-  })().catch(() => DEFAULT_HOURS);
+  publicHoursPromise ??= getPublicDoc(`${SETTINGS}/${SITE_DOC}`)
+    .then((data) => (data && isValidHours(data.hours) ? data.hours : DEFAULT_HOURS))
+    .catch(() => DEFAULT_HOURS);
   return publicHoursPromise;
 }
 

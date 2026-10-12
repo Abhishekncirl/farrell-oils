@@ -1,16 +1,17 @@
-import { site, isTodo } from '../config/site.js';
+import { useContact } from '../context/ContactContext.jsx';
 import EnquiryForm from '../components/EnquiryForm.jsx';
 import OpeningHours from '../components/OpeningHours.jsx';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
-import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon } from '../components/icons.jsx';
+import { AddressLines, SalesReps } from '../components/ContactBits.jsx';
+import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon, UserIcon } from '../components/icons.jsx';
 
 export default function Contact() {
-  const { address, contact } = site;
+  const contact = useContact();
   return (
     <>
       <Seo path="/contact" />
-      <PageHeader title="Contact" intro={`Call ${contact.person}, ${contact.role}.`} />
+      <PageHeader title="Contact" intro={`Call us on ${contact.phone}, or send us an enquiry below.`} />
 
       <div className="container-page grid gap-10 py-16 md:grid-cols-2">
         <section aria-labelledby="details-heading">
@@ -21,31 +22,32 @@ export default function Contact() {
             <li className="flex gap-3">
               <PhoneIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
               <a href={contact.phoneHref} className="text-lg font-bold text-brand-blue hover:underline">
-                {contact.phoneDisplay}
+                {contact.phone}
               </a>
             </li>
             <li className="flex gap-3">
               <MailIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
-              {isTodo(contact.email) ? (
-                <span>{contact.email}</span>
-              ) : (
-                <a href={`mailto:${contact.email}`} className="font-bold text-brand-blue hover:underline">
-                  {contact.email}
-                </a>
-              )}
+              <a href={`mailto:${contact.email}`} className="font-bold text-brand-blue hover:underline">
+                {contact.email}
+              </a>
             </li>
             <li className="flex gap-3">
               <MapPinIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
               <address className="not-italic">
-                {address.building}
-                <br />
-                {address.street}
-                <br />
-                {address.locality}, {address.region}
-                <br />
-                {address.postalCode}
+                <AddressLines />
               </address>
             </li>
+            {contact.salesReps.length > 0 && (
+              <li className="flex gap-3">
+                <UserIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
+                <div className="w-full max-w-sm">
+                  <h3 className="font-bold text-brand-blue">
+                    {contact.salesReps.length > 1 ? 'Sales representatives' : 'Sales representative'}
+                  </h3>
+                  <SalesReps className="mt-1 space-y-2" linkClassName="font-semibold text-brand-blue hover:underline" />
+                </div>
+              </li>
+            )}
             <li className="flex gap-3">
               <ClockIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
               <div className="w-full max-w-sm">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { site } from '../config/site.js';
+import { useContact } from '../context/ContactContext.jsx';
 
 export const inputClass =
   'mt-1 block w-full rounded-lg border border-gray-400 px-3 py-2.5 text-ink focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue aria-[invalid=true]:border-red-700';
@@ -45,9 +45,10 @@ export function Honeypot() {
 
 /** Submit button plus the sending / sent / error / not-configured messages. */
 export function FormFooter({ status, isConfigured, submitLabel, onReset }) {
+  const contact = useContact();
   const phone = (
-    <a href={site.contact.phoneHref} className="font-bold underline">
-      {site.contact.phoneDisplay}
+    <a href={contact.phoneHref} className="font-bold underline">
+      {contact.phone}
     </a>
   );
 

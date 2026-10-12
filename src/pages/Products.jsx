@@ -1,10 +1,12 @@
 import { site } from '../config/site.js';
+import { fillPhone, useContact } from '../context/ContactContext.jsx';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import CTASection from '../components/CTASection.jsx';
 import { CheckIcon, DropIcon } from '../components/icons.jsx';
 
 export default function Products() {
+  const contact = useContact();
   return (
     <>
       <Seo path="/products" />
@@ -37,7 +39,7 @@ export default function Products() {
         ))}
       </div>
 
-      <CTASection heading={site.copy.urgentHeading} text={site.copy.urgentText} />
+      <CTASection heading={site.copy.urgentHeading} text={fillPhone(site.copy.urgentText, contact)} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { routes, site, isTodo } from '../config/site.js';
+import { routes } from '../config/site.js';
+import { useContact } from '../context/ContactContext.jsx';
 import Logo from './Logo.jsx';
 import { PhoneIcon, MailIcon, MenuIcon, CloseIcon, LockIcon } from './icons.jsx';
 
@@ -9,7 +10,7 @@ const navItems = routes.filter((r) => r.nav && r.path !== '/get-a-quote');
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const { contact } = site;
+  const contact = useContact();
 
   // Close the mobile menu after navigating.
   useEffect(() => setOpen(false), [pathname]);
@@ -32,24 +33,17 @@ export default function Header() {
       <div className="bg-brand-blue text-sm text-white">
         <div className="container-page flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2">
           <p className="hidden sm:block">
-            {site.address.locality}, {site.address.region}
+            {contact.locality}, {contact.region}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
             <a href={contact.phoneHref} className="inline-flex items-center gap-1.5 font-bold hover:underline">
               <PhoneIcon className="h-4 w-4" />
-              {contact.phoneDisplay}
+              {contact.phone}
             </a>
-            {isTodo(contact.email) ? (
-              <span className="inline-flex items-center gap-1.5 opacity-90">
-                <MailIcon className="h-4 w-4" />
-                {contact.email}
-              </span>
-            ) : (
-              <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1.5 hover:underline">
+            <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1.5 hover:underline">
                 <MailIcon className="h-4 w-4" />
                 {contact.email}
               </a>
-            )}
           </div>
         </div>
       </div>
@@ -123,7 +117,7 @@ export default function Header() {
           <li className="flex flex-col gap-2 pt-2 sm:hidden">
             <a href={contact.phoneHref} className="btn btn-secondary">
               <PhoneIcon className="h-5 w-5" />
-              Call Now: {contact.phoneDisplay}
+              Call Now: {contact.phone}
             </a>
             <Link to="/get-a-quote" className="btn btn-primary">
               Get a Quote

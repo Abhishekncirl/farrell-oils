@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-import { routes, site, isTodo } from '../config/site.js';
+import { routes, site } from '../config/site.js';
+import { useContact } from '../context/ContactContext.jsx';
+import { AddressLines, SalesReps } from './ContactBits.jsx';
 import Logo from './Logo.jsx';
 import Wave from './Wave.jsx';
 import OpeningHours from './OpeningHours.jsx';
 import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon } from './icons.jsx';
 
 export default function Footer() {
-  const { address, contact } = site;
+  const contact = useContact();
   const socials = Object.entries(site.social).filter(([, url]) => url);
 
   return (
@@ -25,38 +27,31 @@ export default function Footer() {
             <address className="mt-3 flex gap-2 text-sm not-italic">
               <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0" />
               <span>
-                {address.building}
-                <br />
-                {address.street}
-                <br />
-                {address.locality}, {address.region}
-                <br />
-                {address.postalCode}
+                <AddressLines />
               </span>
             </address>
+            {contact.salesReps.length > 0 && (
+              <>
+                <h2 className="mt-6 text-lg font-bold">Sales</h2>
+                <SalesReps className="mt-3 space-y-2 text-sm" linkClassName="hover:underline" />
+              </>
+            )}
           </div>
 
           <div>
             <h2 className="text-lg font-bold">Contact</h2>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
-                {contact.person}, {contact.role}
-              </li>
-              <li>
                 <a href={contact.phoneHref} className="inline-flex items-center gap-2 font-bold hover:underline">
                   <PhoneIcon className="h-5 w-5" />
-                  {contact.phoneDisplay}
+                  {contact.phone}
                 </a>
               </li>
               <li className="inline-flex items-center gap-2">
                 <MailIcon className="h-5 w-5" />
-                {isTodo(contact.email) ? (
-                  contact.email
-                ) : (
-                  <a href={`mailto:${contact.email}`} className="hover:underline">
-                    {contact.email}
-                  </a>
-                )}
+                <a href={`mailto:${contact.email}`} className="hover:underline">
+                  {contact.email}
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <ClockIcon className="mt-0.5 h-5 w-5 shrink-0" />

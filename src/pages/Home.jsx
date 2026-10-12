@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { site } from '../config/site.js';
+import { useContact } from '../context/ContactContext.jsx';
 import Seo from '../components/Seo.jsx';
 import Wave from '../components/Wave.jsx';
 import ProductCard from '../components/ProductCard.jsx';
@@ -8,6 +9,7 @@ import DeliveryMap from '../components/DeliveryMap.jsx';
 import { CheckIcon, PhoneIcon } from '../components/icons.jsx';
 
 export default function Home() {
+  const contact = useContact();
   return (
     <>
       <Seo path="/" />
@@ -16,7 +18,7 @@ export default function Home() {
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-brand-blue text-white">
         <div className="container-page py-16 sm:py-24">
           <p className="text-lg font-bold text-brand-green-light">
-            {site.name} · {site.address.locality}, {site.address.region}
+            {site.name} · {contact.locality}, {contact.region}
           </p>
           <h1 id="hero-heading" className="mt-2 max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl">
             {site.copy.heroHeading}
@@ -26,9 +28,9 @@ export default function Home() {
             <Link to="/get-a-quote" className="btn bg-white text-brand-blue hover:bg-brand-green-tint">
               Get a Quote
             </Link>
-            <a href={site.contact.phoneHref} className="btn btn-outline">
+            <a href={contact.phoneHref} className="btn btn-outline">
               <PhoneIcon className="h-5 w-5" />
-              Call {site.contact.phoneDisplay}
+              Call {contact.phone}
             </a>
           </div>
         </div>
@@ -76,16 +78,16 @@ export default function Home() {
           </h2>
           <p className="mt-3 text-2xl font-bold text-brand-green-dark">{site.areaServedText}</p>
           <p className="mt-3 text-lg">
-            From our base in {site.address.locality}, {site.address.region}, we deliver to farms, businesses and homes
+            From our base in {contact.locality}, {contact.region}, we deliver to farms, businesses and homes
             in every county.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/get-a-quote" className="btn btn-primary">
               Get a Quote
             </Link>
-            <a href={site.contact.phoneHref} className="btn btn-secondary">
+            <a href={contact.phoneHref} className="btn btn-secondary">
               <PhoneIcon className="h-5 w-5" />
-              {site.contact.phoneDisplay}
+              {contact.phone}
             </a>
           </div>
         </div>

@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { fullAddress, site } from '../../config/site.js';
+import { site } from '../../config/site.js';
+import { useContact } from '../../context/ContactContext.jsx';
+import { formatAddress } from '../../lib/contact.js';
 import Seo from '../../components/Seo.jsx';
 import LegalPage, { ContactLinks, LegalSection } from './LegalPage.jsx';
 
 export default function Privacy() {
+  const fullAddress = formatAddress(useContact());
   return (
     <>
       <Seo path="/privacy" />
