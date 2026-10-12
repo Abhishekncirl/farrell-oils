@@ -84,7 +84,7 @@ export default function OpeningHoursSettings() {
         </p>
 
         <div className="mt-5 divide-y divide-gray-100">
-          <div aria-hidden="true" className="hidden grid-cols-[8rem_1fr_1fr_8rem] gap-3 pb-2 text-sm font-semibold text-gray-700 sm:grid">
+          <div aria-hidden="true" className="hidden grid-cols-[8rem_minmax(0,1fr)_minmax(0,1fr)_8rem] gap-3 pb-2 text-sm font-semibold text-gray-700 sm:grid">
             <span>Day</span>
             <span>Opens</span>
             <span>Closes</span>
@@ -95,9 +95,9 @@ export default function OpeningHoursSettings() {
             const error = dayError(d);
             const errorProps = error ? { 'aria-invalid': true, 'aria-describedby': `${key}-error` } : {};
             return (
-              <fieldset key={key} className="grid grid-cols-[1fr_1fr_auto] items-center gap-x-3 gap-y-1.5 py-3 sm:grid-cols-[8rem_1fr_1fr_8rem]">
+              <fieldset key={key} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 py-3 sm:grid-cols-[8rem_minmax(0,1fr)_minmax(0,1fr)_8rem]">
                 <legend className="float-left col-span-3 font-bold sm:col-span-1">{name}</legend>
-                <label className="block">
+                <label className="block min-w-0">
                   <span className="block text-xs font-semibold text-gray-700 sm:sr-only">{name} opens</span>
                   <input
                     id={`${key}-opens`}
@@ -107,10 +107,10 @@ export default function OpeningHoursSettings() {
                     required
                     {...errorProps}
                     onChange={(e) => setDay(key, { opens: e.target.value })}
-                    className={`${timeInput} w-full`}
+                    className={`${timeInput} time-input w-full min-w-0`}
                   />
                 </label>
-                <label className="block">
+                <label className="block min-w-0">
                   <span className="block text-xs font-semibold text-gray-700 sm:sr-only">{name} closes</span>
                   <input
                     id={`${key}-closes`}
@@ -120,7 +120,7 @@ export default function OpeningHoursSettings() {
                     required
                     {...errorProps}
                     onChange={(e) => setDay(key, { closes: e.target.value })}
-                    className={`${timeInput} w-full`}
+                    className={`${timeInput} time-input w-full min-w-0`}
                   />
                 </label>
                 <label className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2">

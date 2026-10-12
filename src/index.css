@@ -117,3 +117,17 @@
     animation: none;
   }
 }
+
+/* iOS Safari gives <input type="time"> a large intrinsic width and centred
+   text; let it shrink to its column and line up like other fields. */
+@layer components {
+  .time-input {
+    -webkit-appearance: none;
+    appearance: none;
+    min-height: 2.5rem;
+    background-color: #ffffff;
+  }
+  .time-input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}
