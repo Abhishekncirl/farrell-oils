@@ -43,10 +43,17 @@ export const site = {
     countryCode: 'IE',
   },
 
-  // [TODO: confirm opening hours] Replace with entries like
-  // { days: ['Monday', 'Tuesday'], opens: '08:00', closes: '18:00' }
-  openingHours: [],
-  openingHoursText: todo('confirm opening hours'),
+  // Default opening hours (24h "HH:MM"). Staff can change the live hours in
+  // Admin > Settings; these are the fallback and what search engines see at build.
+  openingHours: {
+    mon: { closed: false, opens: '10:00', closes: '17:00' },
+    tue: { closed: false, opens: '10:00', closes: '17:00' },
+    wed: { closed: false, opens: '10:00', closes: '17:00' },
+    thu: { closed: false, opens: '10:00', closes: '17:00' },
+    fri: { closed: false, opens: '10:00', closes: '17:00' },
+    sat: { closed: false, opens: '10:00', closes: '17:00' },
+    sun: { closed: false, opens: '11:00', closes: '17:00' },
+  },
 
   // Confirmed by the client: delivery anywhere in Ireland.
   areaServed: ['Ireland'],

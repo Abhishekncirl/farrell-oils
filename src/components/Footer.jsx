@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { routes, site, isTodo } from '../config/site.js';
 import Logo from './Logo.jsx';
 import Wave from './Wave.jsx';
+import OpeningHours from './OpeningHours.jsx';
 import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon } from './icons.jsx';
 
 export default function Footer() {
@@ -59,7 +60,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <ClockIcon className="mt-0.5 h-5 w-5 shrink-0" />
-                {site.openingHoursText}
+                <OpeningHours className="w-full max-w-64 space-y-1" />
               </li>
             </ul>
           </div>

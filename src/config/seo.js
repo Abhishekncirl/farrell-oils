@@ -4,20 +4,21 @@
  * Plain JS with no React imports so it can run in Node.
  */
 import { site, routes, isTodo, routeMeta, pageTitle, basePath } from './site.js';
+import { groupHours } from '../lib/openingHours.js';
 
 const known = (value) => (value && !isTodo(value) ? value : undefined);
 
 export function buildJsonLd() {
   const { address, contact } = site;
 
-  const openingHoursSpecification = site.openingHours.length
-    ? site.openingHours.map((h) => ({
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: h.days,
-        opens: h.opens,
-        closes: h.closes,
-      }))
-    : [{ '@type': 'OpeningHoursSpecification', description: site.openingHoursText }];
+  const openingHoursSpecification = groupHours(site.openingHours)
+    .filter((g) => !g.closed)
+    .map((g) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: g.days,
+      opens: g.opens,
+      closes: g.closes,
+    }));
 
   const areaServed = site.areaServed.length
     ? site.areaServed.map((name) => ({ '@type': name === 'Ireland' ? 'Country' : 'AdministrativeArea', name }))

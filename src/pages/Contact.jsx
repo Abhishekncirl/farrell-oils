@@ -1,5 +1,6 @@
 import { site, isTodo } from '../config/site.js';
 import EnquiryForm from '../components/EnquiryForm.jsx';
+import OpeningHours from '../components/OpeningHours.jsx';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon } from '../components/icons.jsx';
@@ -47,7 +48,10 @@ export default function Contact() {
             </li>
             <li className="flex gap-3">
               <ClockIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
-              <span>{site.openingHoursText}</span>
+              <div className="w-full max-w-sm">
+                <h3 className="font-bold text-brand-blue">Opening hours</h3>
+                <OpeningHours className="mt-1 space-y-1" />
+              </div>
             </li>
           </ul>
         </section>

@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import { Link, Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, NavLink, Outlet, Route, Routes } from 'react-router-dom';
 import { site } from '../../config/site.js';
 import Logo from '../../components/Logo.jsx';
 import { AuthProvider, ProtectedRoute, useAuth } from './auth.jsx';
 import LoginPage from './LoginPage.jsx';
 import EnquiriesPage from './EnquiriesPage.jsx';
+import SettingsPage from './SettingsPage.jsx';
 
 /** Admin area, code-split from the public site and kept out of search results. */
 export default function AdminApp() {
@@ -24,6 +25,7 @@ export default function AdminApp() {
           }
         >
           <Route index element={<EnquiriesPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Routes>
@@ -53,6 +55,28 @@ function AdminLayout() {
             </button>
           </div>
         </div>
+        <nav aria-label="Admin" className="container-page">
+          <ul className="flex gap-1">
+            {[
+              ['/admin', 'Enquiries'],
+              ['/admin/settings', 'Settings'],
+            ].map(([to, label]) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  end
+                  className={({ isActive }) =>
+                    `-mb-px inline-block border-b-3 px-4 py-2.5 font-bold ${
+                      isActive ? 'border-brand-blue text-brand-blue' : 'border-transparent text-gray-700 hover:text-brand-blue'
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
       <main className="container-page py-8">
         <Outlet />

@@ -15,6 +15,8 @@ which are covered by the free Spark plan.
 - Each submission is saved to the Firestore collection `enquiries`.
 - Staff sign in at `/admin` to view, search, filter, add notes, mark as
   read/actioned, delete, and export to CSV (Excel).
+- Staff change the opening hours in **Admin → Settings**; the website footer and
+  Contact page update straight away (stored in Firestore at `settings/site`).
 - `firestore.rules` lets anyone *submit* an enquiry, but only the admin email
   addresses listed in it can *read* them.
 
@@ -77,3 +79,8 @@ Copy `.env.example` to `.env`, fill in the same 4 values, then `npm run dev`.
 ## Adding or removing an admin
 Edit the email list in `firestore.rules`, publish it again (step 4), and add or
 delete the user under **Authentication → Users**.
+
+## Updating the rules after a website change
+When `firestore.rules` changes in the repo (e.g. the Settings tab added
+`settings/site`), copy the whole file into **Firestore → Rules** again and
+**Publish**. Keep your admin email list as it is in the console.
