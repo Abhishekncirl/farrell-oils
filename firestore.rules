@@ -14,11 +14,11 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Admin emails. To add one: 'farrelloils@gmail.com', 'name@example.com'
     function isAdmin() {
       return request.auth != null
         && request.auth.token.email in [
           'farrelloils@gmail.com'
-          // Add more admins as extra lines, e.g. , 'name@example.com'
         ];
     }
 
