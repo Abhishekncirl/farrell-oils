@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { routes, site, isTodo } from '../config/site.js';
 import Logo from './Logo.jsx';
-import { PhoneIcon, MailIcon, MenuIcon, CloseIcon } from './icons.jsx';
+import { PhoneIcon, MailIcon, MenuIcon, CloseIcon, LockIcon } from './icons.jsx';
 
 const navItems = routes.filter((r) => r.nav && r.path !== '/get-a-quote');
 
@@ -69,6 +69,14 @@ export default function Header() {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <NavLink to="/admin" className={navLinkClass}>
+                <span className="inline-flex items-center gap-1.5">
+                  <LockIcon className="h-4 w-4" />
+                  Admin
+                </span>
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
@@ -104,6 +112,14 @@ export default function Header() {
               </NavLink>
             </li>
           ))}
+          <li>
+            <NavLink to="/admin" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5">
+                <LockIcon className="h-4 w-4" />
+                Admin
+              </span>
+            </NavLink>
+          </li>
           <li className="flex flex-col gap-2 pt-2 sm:hidden">
             <a href={contact.phoneHref} className="btn btn-secondary">
               <PhoneIcon className="h-5 w-5" />
