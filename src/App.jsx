@@ -5,7 +5,8 @@ import Home from './pages/Home.jsx';
 import Products from './pages/Products.jsx';
 import GetAQuote from './pages/GetAQuote.jsx';
 import Contact from './pages/Contact.jsx';
-import Terms from './pages/Terms.jsx';
+import Terms from './pages/legal/Terms.jsx';
+import Privacy from './pages/legal/Privacy.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 // Admin is split into its own bundle so public visitors never download it.
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="get-a-quote" element={<GetAQuote />} />
         <Route path="contact" element={<Contact />} />
         <Route path="terms" element={<Terms />} />
+        <Route path="privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -99,6 +99,9 @@ export default function Footer() {
               <Link to="/terms" className="hover:underline">
                 Terms and Conditions
               </Link>
+              <Link to="/privacy" className="hover:underline">
+                Privacy Policy
+              </Link>
               <Link to="/admin" className="hover:underline">
                 Staff login
               </Link>

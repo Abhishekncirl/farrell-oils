@@ -70,6 +70,9 @@ export const site = {
     linkedin: '',
   },
 
+  // Shown as "Last updated" on the Terms and Privacy pages.
+  legalUpdated: '12 October 2026',
+
   images: {
     logo: '/logo.png',
     // 1200x630, generated from the logo. Social sites do not accept SVG.
@@ -229,7 +232,16 @@ export const routes = [
     path: '/terms',
     name: 'Terms and Conditions',
     nav: null,
-    description: 'Terms and conditions of sale and delivery for Farrell Oils, Carrickmacross, Co. Monaghan.',
+    description: 'Terms and conditions for the Farrell Oils website, enquiries, quotes and fuel deliveries.',
+    changefreq: 'yearly',
+    priority: '0.3',
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy Policy',
+    nav: null,
+    description:
+      'How Farrell Oils uses the details you send us: for contact and business purposes only. Your GDPR rights and how to contact us.',
     changefreq: 'yearly',
     priority: '0.3',
   },

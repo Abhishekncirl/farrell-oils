@@ -66,9 +66,10 @@ export function FormFooter({ status, isConfigured, submitLabel, onReset }) {
   return (
     <div className="space-y-4 sm:col-span-2">
       <p className="text-sm">
-        <span aria-hidden="true">*</span> Required. We only use your details to reply to this enquiry. See our{' '}
-        <Link to="/terms" className="font-bold text-brand-blue underline">
-          terms
+        <span aria-hidden="true">*</span> Required. Your details are used for contact and business purposes only. See
+        our{' '}
+        <Link to="/privacy" className="font-bold text-brand-blue underline">
+          Privacy Policy
         </Link>
         .
       </p>
