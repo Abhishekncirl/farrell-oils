@@ -94,9 +94,14 @@ export default function Footer() {
             <p>
               &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
             </p>
-            <Link to="/terms" className="hover:underline">
-              Terms and Conditions
-            </Link>
+            <div className="flex gap-4">
+              <Link to="/terms" className="hover:underline">
+                Terms and Conditions
+              </Link>
+              <Link to="/admin" className="hover:underline">
+                Staff login
+              </Link>
+            </div>
           </div>
         </div>
       </div>

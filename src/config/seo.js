@@ -3,7 +3,7 @@
  * web manifest. Used by vite.config.js (index.html) and scripts/generate-seo-files.js.
  * Plain JS with no React imports so it can run in Node.
  */
-import { site, routes, isTodo, routeMeta, pageTitle } from './site.js';
+import { site, routes, isTodo, routeMeta, pageTitle, basePath } from './site.js';
 
 const known = (value) => (value && !isTodo(value) ? value : undefined);
 
@@ -69,7 +69,7 @@ export function buildJsonLd() {
 }
 
 export function buildRobots() {
-  return `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`;
+  return `User-agent: *\nAllow: /\nDisallow: ${basePath}admin\n\nSitemap: ${site.url}/sitemap.xml\n`;
 }
 
 export function buildSitemap() {

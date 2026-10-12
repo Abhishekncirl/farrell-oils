@@ -1,0 +1,62 @@
+rules_version = '2';
+
+// Firestore security rules for Farrell Oils.
+//
+// - Anyone can CREATE an enquiry, but only with the exact, size-limited shape
+//   the website forms send (see src/lib/enquiries.js).
+// - Only admins can READ, UPDATE (read/actioned flags and notes) or DELETE them.
+// - Admins are the email addresses listed in isAdmin() below. Being signed in is
+//   NOT enough on its own, because Firebase lets anyone create an account via its
+//   public API.
+//
+// To add or remove an admin: edit the list, then publish the rules
+// (Firebase console > Firestore > Rules, or `firebase deploy --only firestore:rules`).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'ADMIN_EMAIL@example.com'
+        ];
+    }
+
+    function str(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+
+    function isValidEnquiry(d) {
+      let fields = ['type', 'name', 'phone', 'email', 'message', 'details',
+                    'isRead', 'isActioned', 'notes', 'createdAt'];
+      return d.keys().hasOnly(fields) && d.keys().hasAll(fields)
+        && d.type in ['quote', 'general']
+        && str(d.name, 1, 200)
+        && str(d.phone, 7, 40)
+        && str(d.email, 0, 320)
+        && str(d.message, 0, 5000)
+        && d.details is map
+        && d.details.keys().hasOnly(['product', 'quantity', 'address', 'eircode'])
+        && d.details.size() <= 4
+        && d.isRead == false
+        && d.isActioned == false
+        && d.notes == ''
+        && d.createdAt == request.time;
+    }
+
+    match /enquiries/{enquiryId} {
+      allow create: if isValidEnquiry(request.resource.data);
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['isRead', 'isActioned', 'notes'])
+        && request.resource.data.isRead is bool
+        && request.resource.data.isActioned is bool
+        && str(request.resource.data.notes, 0, 2000);
+    }
+
+    // Everything else is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

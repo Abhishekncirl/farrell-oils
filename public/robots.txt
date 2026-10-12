@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /farrell-oils/admin
 
 Sitemap: https://abhishekncirl.github.io/farrell-oils/sitemap.xml

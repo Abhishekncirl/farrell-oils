@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import { site } from '../config/site.js';
+import { useEnquiryForm } from '../hooks/useEnquiryForm.js';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
-
-const field =
-  'mt-1 block w-full rounded-lg border border-gray-400 px-3 py-2.5 text-ink focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue';
-const label = 'block font-bold';
+import { Field, FormFooter, Honeypot } from '../components/form.jsx';
 
 export default function GetAQuote() {
-  const [submitted, setSubmitted] = useState(false);
-
-  // [TODO: connect quote form to a backend / email service in a later phase]
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const { status, errors, handleSubmit, isConfigured, reset } = useEnquiryForm({
+    type: 'quote',
+    detailFields: ['product', 'quantity', 'address', 'eircode'],
+  });
 
   return (
     <>
@@ -22,79 +16,44 @@ export default function GetAQuote() {
       <PageHeader title="Get a Quote" intro={`Fill in the form, or call ${site.contact.phoneDisplay}.`} />
 
       <div className="container-page py-16">
-        <form onSubmit={handleSubmit} className="mx-auto grid max-w-2xl gap-6 sm:grid-cols-2">
-          <div>
-            <label htmlFor="name" className={label}>
-              Full name <span aria-hidden="true">*</span>
-            </label>
-            <input id="name" name="name" type="text" autoComplete="name" required className={field} />
-          </div>
-          <div>
-            <label htmlFor="phone" className={label}>
-              Phone <span aria-hidden="true">*</span>
-            </label>
-            <input id="phone" name="phone" type="tel" autoComplete="tel" required className={field} />
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="email" className={label}>
-              Email
-            </label>
-            <input id="email" name="email" type="email" autoComplete="email" className={field} />
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="address" className={label}>
-              Delivery address <span aria-hidden="true">*</span>
-            </label>
-            <input id="address" name="address" type="text" autoComplete="street-address" required className={field} />
-          </div>
-          <div>
-            <label htmlFor="eircode" className={label}>
-              Eircode
-            </label>
-            <input id="eircode" name="eircode" type="text" autoComplete="postal-code" className={field} />
-          </div>
-          <div>
-            <label htmlFor="product" className={label}>
-              Product <span aria-hidden="true">*</span>
-            </label>
-            <select id="product" name="product" required defaultValue="" className={field}>
-              <option value="" disabled>
-                Choose a product
+        <form onSubmit={handleSubmit} noValidate className="relative mx-auto grid max-w-2xl gap-5 sm:grid-cols-2">
+          <Honeypot />
+          <Field name="name" label="Full name" required autoComplete="name" error={errors.name} />
+          <Field name="phone" label="Phone" required type="tel" autoComplete="tel" error={errors.phone} />
+          <Field
+            name="email"
+            label="Email"
+            type="email"
+            autoComplete="email"
+            error={errors.email}
+            className="sm:col-span-2"
+          />
+          <Field
+            name="address"
+            label="Delivery address"
+            autoComplete="street-address"
+            maxLength={300}
+            className="sm:col-span-2"
+          />
+          <Field name="eircode" label="Eircode" autoComplete="postal-code" maxLength={10} />
+          <Field name="product" label="Product" as="select" defaultValue="">
+            <option value="">Choose a product</option>
+            {site.products.map((p) => (
+              <option key={p.slug} value={p.name}>
+                {p.name}
               </option>
-              {site.products.map((p) => (
-                <option key={p.slug} value={p.slug}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="quantity" className={label}>
-              Quantity (litres)
-            </label>
-            <input id="quantity" name="quantity" type="number" min="0" inputMode="numeric" className={field} />
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="message" className={label}>
-              Message
-            </label>
-            <textarea id="message" name="message" rows={4} className={field} />
-          </div>
-          <p className="text-sm sm:col-span-2">
-            <span aria-hidden="true">*</span> Required field
-          </p>
-          <div className="sm:col-span-2">
-            <button type="submit" className="btn btn-primary w-full sm:w-auto">
-              Request Quote
-            </button>
-          </div>
-          <div role="status" aria-live="polite" className="sm:col-span-2">
-            {submitted && (
-              <p className="placeholder">
-                [TODO: quote form not yet connected] Your request has not been sent. Please call {site.contact.phoneDisplay}.
-              </p>
-            )}
-          </div>
+            ))}
+          </Field>
+          <Field name="quantity" label="Quantity (litres)" type="number" min="0" inputMode="numeric" />
+          <Field
+            name="message"
+            label="Anything else?"
+            as="textarea"
+            rows={4}
+            maxLength={5000}
+            className="sm:col-span-2"
+          />
+          <FormFooter status={status} isConfigured={isConfigured} submitLabel="Request Quote" onReset={reset} />
         </form>
       </div>
     </>

@@ -3,11 +3,13 @@
 Website for **Farrell Oils**, fuel supplier in Carrickmacross, Co. Monaghan, Ireland.
 Products: Derv, Petrol, Gas Oil, AdBlue (BluePlus AdBlue).
 
-Status: Phase 1 (project setup, skeleton pages and metadata).
+Status: Phase 1 (project setup, skeleton pages and metadata) plus customer enquiries and admin.
 
 ## Stack
 
 React 18 + Vite 6 + Tailwind CSS 4 + React Router 6, with `react-helmet-async` for per-page metadata.
+Firebase (Firestore + Auth) stores customer enquiries; staff manage them at `/admin`.
+See **[SETUP-FIREBASE.md](SETUP-FIREBASE.md)** to connect the database.
 
 ## Commands
 

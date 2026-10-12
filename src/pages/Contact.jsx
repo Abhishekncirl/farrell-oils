@@ -1,4 +1,5 @@
 import { site, isTodo } from '../config/site.js';
+import EnquiryForm from '../components/EnquiryForm.jsx';
 import Seo from '../components/Seo.jsx';
 import PageHeader from '../components/PageHeader.jsx';
 import { PhoneIcon, MailIcon, MapPinIcon, ClockIcon } from '../components/icons.jsx';
@@ -60,6 +61,20 @@ export default function Contact() {
           </div>
         </section>
       </div>
+
+      <section aria-labelledby="enquiry-heading" className="bg-brand-green-tint">
+        <div className="container-page py-16">
+          <div className="mx-auto max-w-2xl">
+            <h2 id="enquiry-heading" className="text-2xl font-extrabold text-brand-blue">
+              Send us an enquiry
+            </h2>
+            <p className="mt-2">Leave your details and we will get back to you.</p>
+            <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm">
+              <EnquiryForm />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
