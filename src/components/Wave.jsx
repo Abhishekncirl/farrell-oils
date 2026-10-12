@@ -5,7 +5,7 @@
 export default function Wave({ className = '', flip = false, fill = '#FFFFFF' }) {
   return (
     <svg
-      className={`block w-full ${flip ? 'rotate-180' : ''} ${className}`}
+      className={`-mb-px block w-full ${flip ? 'rotate-180' : ''} ${className}`}
       viewBox="0 0 1440 120"
       preserveAspectRatio="none"
       aria-hidden="true"
