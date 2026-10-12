@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { htmlTokens } from './src/config/seo.js';
+import { basePath } from './src/config/site.js';
 
 const escapeAttr = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -24,5 +25,6 @@ function siteMetadata() {
 }
 
 export default defineConfig({
+  base: basePath,
   plugins: [react(), tailwindcss(), siteMetadata()],
 });

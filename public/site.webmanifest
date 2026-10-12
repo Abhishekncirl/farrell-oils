@@ -3,14 +3,14 @@
   "short_name": "Farrell Oils",
   "description": "Farrell Oils, Carrickmacross, Co. Monaghan. Supplier of derv, petrol, gas oil and BluePlus AdBlue. Call 087 917 6881 for a fuel quote.",
   "lang": "en-IE",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#2F55A4",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

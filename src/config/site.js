@@ -16,9 +16,10 @@ export const site = {
   name: 'Farrell Oils',
   tagline: todo('confirm tagline'),
 
-  // Placeholder domain (example.com is reserved for documentation).
-  // [TODO: confirm domain name] Replace with the real domain, no trailing slash.
-  url: 'https://example.com',
+  // Live URL, no trailing slash. Currently the GitHub Pages address.
+  // [TODO: confirm domain name] Replace with the real domain once bought,
+  // e.g. 'https://www.example.ie'. The build's base path is derived from this.
+  url: 'https://abhishekncirl.github.io/farrell-oils',
 
   locale: 'en_IE',
   lang: 'en-IE',
@@ -125,6 +126,9 @@ export const site = {
     'commercial fuel',
   ],
 };
+
+/** Path the site is served under, e.g. '/farrell-oils/' on GitHub Pages or '/' on a domain. */
+export const basePath = `${new URL(site.url).pathname.replace(/\/$/, '')}/`;
 
 export const fullAddress = [
   site.address.building,
