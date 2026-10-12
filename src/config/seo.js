@@ -124,6 +124,7 @@ export function htmlTokens() {
     THEME_COLOR: site.colors.brandBlue,
     SITE_URL: site.url,
     SITE_NAME: site.name,
+    PHONE: site.contact.phoneDisplay,
     LOCALE: site.locale,
     OG_IMAGE: `${site.url}${site.images.ogImage}`,
     OG_IMAGE_ALT: site.images.ogImageAlt,

@@ -12,6 +12,9 @@
 export const todo = (what) => `[TODO: ${what}]`;
 export const isTodo = (value) => typeof value === 'string' && value.startsWith('[TODO');
 
+// Phone number shown on the site, in international format. Change it here only.
+const PHONE = '+353 87 917 6881';
+
 export const site = {
   name: 'Farrell Oils',
   tagline: 'Fueling, Powering, Delivering',
@@ -27,9 +30,9 @@ export const site = {
   contact: {
     person: 'Sean Farrell',
     role: 'Sales Representative',
-    phoneDisplay: '087 917 6881',
-    phoneIntl: '+353 87 917 6881',
-    phoneHref: 'tel:+353879176881',
+    phoneDisplay: PHONE,
+    phoneIntl: PHONE,
+    phoneHref: `tel:${PHONE.replace(/\s/g, '')}`,
     email: 'farrelloils@gmail.com',
   },
 
@@ -126,11 +129,11 @@ export const site = {
       { title: 'Nationwide delivery', text: 'We deliver all across Ireland.' },
     ],
     ctaHeading: 'Running low?',
-    ctaText: "Ring 087 917 6881 and we'll get you sorted.",
+    ctaText: `Ring ${PHONE} and we'll get you sorted.`,
     urgentHeading: 'Need fuel fast?',
-    urgentText: "Call 087 917 6881. We'll do our best to get to you quickly.",
+    urgentText: `Call ${PHONE}. We'll do our best to get to you quickly.`,
     quoteIntro:
-      "Tell us the product, the quantity and where it's going, and we'll come back to you with a price. Prefer to talk? Call 087 917 6881.",
+      `Tell us the product, the quantity and where it's going, and we'll come back to you with a price. Prefer to talk? Call ${PHONE}.`,
   },
 
   // Mirrors the tokens in src/index.css (@theme). Used for meta theme-color,
@@ -191,7 +194,7 @@ export const routes = [
     name: 'Home',
     nav: 'Home',
     description:
-      'Farrell Oils, Carrickmacross, Co. Monaghan. Derv, petrol, gas oil, HVO and BluePlus AdBlue delivered across Ireland. Call 087 917 6881.',
+      `Farrell Oils, Carrickmacross, Co. Monaghan. Derv, petrol, gas oil, HVO and BluePlus AdBlue delivered across Ireland. Call ${PHONE}.`,
     changefreq: 'weekly',
     priority: '1.0',
   },
@@ -209,7 +212,7 @@ export const routes = [
     name: 'Get a Quote',
     nav: 'Get a Quote',
     description:
-      'Request a fuel quote from Farrell Oils for derv, petrol, gas oil, HVO or AdBlue. Delivery across Ireland. Or call 087 917 6881.',
+      `Request a fuel quote from Farrell Oils for derv, petrol, gas oil, HVO or AdBlue. Delivery across Ireland. Or call ${PHONE}.`,
     changefreq: 'monthly',
     priority: '0.9',
   },
@@ -218,7 +221,7 @@ export const routes = [
     name: 'Contact',
     nav: 'Contact',
     description:
-      "Contact Farrell Oils, O'Duffy Centre, Main Street, Carrickmacross, Co. Monaghan. Call Sean Farrell on 087 917 6881.",
+      `Contact Farrell Oils, O'Duffy Centre, Main Street, Carrickmacross, Co. Monaghan. Call Sean Farrell on ${PHONE}.`,
     changefreq: 'yearly',
     priority: '0.7',
   },
