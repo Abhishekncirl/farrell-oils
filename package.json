@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "seo": "node scripts/generate-seo-files.js",
+    "predev": "npm run seo",
     "dev": "vite",
+    "prebuild": "npm run seo",
     "build": "vite build",
     "preview": "vite preview"
   },
