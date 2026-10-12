@@ -11,7 +11,7 @@ export default function Privacy() {
         <LegalSection heading="1. Who we are">
           <p>
             {site.name}, {fullAddress} (&quot;we&quot;, &quot;us&quot;) is the data controller for personal data
-            collected through this website. [CLIENT TO REVIEW WITH SOLICITOR: legal entity name and registered address.]
+            collected through this website.
           </p>
         </LegalSection>
 
@@ -42,8 +42,7 @@ export default function Privacy() {
           </p>
           <p>
             Our legal basis is taking steps at your request before entering a contract, performing a contract with
-            you, our legitimate interest in running the business, and complying with the law. [CLIENT TO REVIEW WITH
-            SOLICITOR: lawful bases.]
+            you, our legitimate interest in running the business, and complying with the law.
           </p>
         </LegalSection>
 
@@ -51,8 +50,7 @@ export default function Privacy() {
           <p>
             Enquiries are stored securely with Google Firebase (Google Cloud), which hosts our database. Only{' '}
             {site.name} staff with an admin login can read them. We may share the details needed to complete an order
-            with a delivery or haulage partner, our accountant, or where the law requires it. [CLIENT TO REVIEW WITH
-            SOLICITOR: list of processors and any transfers outside the EEA.]
+            with a delivery or haulage partner, our accountant, or where the law requires it.
           </p>
         </LegalSection>
 
@@ -67,7 +65,7 @@ export default function Privacy() {
           <p>
             We keep enquiries only as long as needed to deal with your request. Records of orders and deliveries are
             kept for as long as Irish tax and accounting law requires. Enquiries that do not lead to an order are
-            deleted when no longer needed. [CLIENT TO REVIEW WITH SOLICITOR: exact retention periods.]
+            deleted when no longer needed.
           </p>
         </LegalSection>
 

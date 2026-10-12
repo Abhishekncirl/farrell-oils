@@ -7,7 +7,7 @@ export default function Terms() {
   return (
     <>
       <Seo path="/terms" />
-      <LegalPage title="Terms and Conditions">
+      <LegalPage title="Terms and Conditions" draft>
         <LegalSection heading="1. About us">
           <p>
             This website is operated by {site.name}, {fullAddress} (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;).
