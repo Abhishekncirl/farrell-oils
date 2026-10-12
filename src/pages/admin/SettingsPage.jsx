@@ -145,9 +145,9 @@ export default function SettingsPage() {
 
         <div className="mt-6 rounded-lg bg-brand-green-tint p-4">
           <p className="text-sm font-bold text-brand-green-deep">Preview: how it appears on the website</p>
-          <dl className="mt-2 max-w-sm space-y-1">
+          <dl className="mt-2 max-w-sm space-y-2">
             {groupHours(hours).map((g) => (
-              <div key={g.label} className="flex flex-wrap justify-between gap-x-4">
+              <div key={g.label}>
                 <dt className="font-bold">{g.label}</dt>
                 <dd>{g.text}</dd>
               </div>

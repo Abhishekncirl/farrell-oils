@@ -50,7 +50,7 @@ export default function Contact() {
               <ClockIcon className="h-6 w-6 shrink-0 text-brand-green-dark" />
               <div className="w-full max-w-sm">
                 <h3 className="font-bold text-brand-blue">Opening hours</h3>
-                <OpeningHours className="mt-1 space-y-1" />
+                <OpeningHours className="mt-1 space-y-2" />
               </div>
             </li>
           </ul>

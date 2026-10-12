@@ -60,7 +60,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <ClockIcon className="mt-0.5 h-5 w-5 shrink-0" />
-                <OpeningHours className="w-full max-w-64 space-y-1" />
+                <OpeningHours className="w-full max-w-64 space-y-2" />
               </li>
             </ul>
           </div>
