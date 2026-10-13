@@ -63,6 +63,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Delivery area */}
+      <section aria-labelledby="area-heading" className="container-page grid items-center gap-10 py-16 md:grid-cols-2">
+        <div>
+          <h2 id="area-heading" className="text-3xl font-extrabold text-brand-blue">
+            Delivery area
+          </h2>
+          <p className="mt-3 text-2xl font-bold text-brand-green-dark">{site.areaServedText}</p>
+          <p className="mt-3 text-lg">
+            From our base in {contact.locality}, {contact.region}, we deliver to farms, businesses and homes
+            across the country.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link to="/get-a-quote" className="btn btn-primary">
+              Get a Quote
+            </Link>
+            <a href={contact.phoneHref} className="btn btn-secondary">
+              <PhoneIcon className="h-5 w-5" />
+              {contact.phone}
+            </a>
+          </div>
+        </div>
+        <DeliveryMap className="mx-auto w-full max-w-md" />
+      </section>
+
       {/* Why choose us */}
       <section aria-labelledby="why-heading" className="bg-brand-green-tint">
         <div className="container-page py-16">
@@ -81,30 +105,6 @@ export default function Home() {
             ))}
           </ul>
         </div>
-      </section>
-
-      {/* Delivery area */}
-      <section aria-labelledby="area-heading" className="container-page grid items-center gap-10 py-16 md:grid-cols-2">
-        <div>
-          <h2 id="area-heading" className="text-3xl font-extrabold text-brand-blue">
-            Delivery area
-          </h2>
-          <p className="mt-3 text-2xl font-bold text-brand-green-dark">{site.areaServedText}</p>
-          <p className="mt-3 text-lg">
-            From our base in {contact.locality}, {contact.region}, we deliver to farms, businesses and homes
-            in every county.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/get-a-quote" className="btn btn-primary">
-              Get a Quote
-            </Link>
-            <a href={contact.phoneHref} className="btn btn-secondary">
-              <PhoneIcon className="h-5 w-5" />
-              {contact.phone}
-            </a>
-          </div>
-        </div>
-        <DeliveryMap className="mx-auto w-full max-w-md" />
       </section>
 
       <CTASection />
