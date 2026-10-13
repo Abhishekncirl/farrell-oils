@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { routes, site } from '../config/site.js';
+import { PRODUCTS_SECTION, routes, site } from '../config/site.js';
 import { useContact } from '../context/ContactContext.jsx';
 import { AddressLines, SalesReps } from './ContactBits.jsx';
 import Logo from './Logo.jsx';
@@ -63,7 +63,9 @@ export default function Footer() {
           <div>
             <h2 className="text-lg font-bold">Quick links</h2>
             <ul className="mt-3 space-y-2 text-sm">
-              {routes.filter((r) => !r.path.startsWith('/products/')).map((r) => (
+              {[routes[0], { path: PRODUCTS_SECTION, name: 'Products' }, ...routes.slice(1)]
+                .filter((r) => !r.path.startsWith('/products/'))
+                .map((r) => (
                 <li key={r.path}>
                   <Link to={r.path} className="hover:underline">
                     {r.name}

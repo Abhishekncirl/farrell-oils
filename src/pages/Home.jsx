@@ -51,7 +51,7 @@ export default function Home() {
       </section>
 
       {/* Products */}
-      <section aria-labelledby="products-heading" className="container-page py-16">
+      <section id="products" aria-labelledby="products-heading" className="container-page py-16">
         <h2 id="products-heading" className="text-3xl font-extrabold text-brand-blue">
           Our products
         </h2>

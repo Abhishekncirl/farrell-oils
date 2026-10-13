@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { routes } from '../config/site.js';
+import { PRODUCTS_SECTION } from '../config/site.js';
 import { useContact } from '../context/ContactContext.jsx';
 import Logo from './Logo.jsx';
 import { PhoneIcon, MailIcon, MenuIcon, CloseIcon, LockIcon } from './icons.jsx';
 
-const navItems = routes.filter((r) => r.nav && r.path !== '/get-a-quote');
+const isProducts = (l) => (l.pathname === '/' && l.hash === '#products') || l.pathname.startsWith('/products/');
+
+const navItems = [
+  { to: '/', label: 'Home', isActive: (l) => l.pathname === '/' && !isProducts(l) },
+  { to: PRODUCTS_SECTION, label: 'Products', isActive: isProducts },
+  { to: '/contact', label: 'Contact', isActive: (l) => l.pathname === '/contact' },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
   const contact = useContact();
 
   // Close the mobile menu after navigating.
@@ -57,10 +64,8 @@ export default function Header() {
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-2">
             {navItems.map((item) => (
-              <li key={item.path}>
-                <NavLink to={item.path} end className={navLinkClass}>
-                  {item.nav}
-                </NavLink>
+              <li key={item.label}>
+                <MenuLink item={item} location={location} className={navLinkClass} />
               </li>
             ))}
             <li>
@@ -100,10 +105,8 @@ export default function Header() {
       <nav id="mobile-nav" aria-label="Mobile" hidden={!open} className="border-t border-gray-100 lg:hidden">
         <ul className="container-page space-y-1 py-3">
           {navItems.map((item) => (
-            <li key={item.path}>
-              <NavLink to={item.path} end className={navLinkClass}>
-                {item.nav}
-              </NavLink>
+            <li key={item.label}>
+              <MenuLink item={item} location={location} className={navLinkClass} />
             </li>
           ))}
           <li>
@@ -126,5 +129,15 @@ export default function Header() {
         </ul>
       </nav>
     </header>
+  );
+}
+
+/** Menu link whose active state also understands #hash sections. */
+function MenuLink({ item, location, className }) {
+  const isActive = item.isActive(location);
+  return (
+    <Link to={item.to} aria-current={isActive ? 'page' : undefined} className={className({ isActive })}>
+      {item.label}
+    </Link>
   );
 }

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { site } from '../config/site.js';
+import { PRODUCTS_SECTION, site } from '../config/site.js';
 import { productPage } from '../data/productPages.js';
 import Seo from '../components/Seo.jsx';
 import Wave from '../components/Wave.jsx';
@@ -41,7 +41,7 @@ export default function ProductPage() {
                 <span aria-hidden="true"> /</span>
               </li>
               <li>
-                <Link to="/products" className="hover:underline">
+                <Link to={PRODUCTS_SECTION} className="hover:underline">
                   Products
                 </Link>
                 <span aria-hidden="true"> /</span>

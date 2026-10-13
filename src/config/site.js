@@ -214,15 +214,6 @@ export const routes = [
     priority: '1.0',
   },
   {
-    path: '/products',
-    name: 'Products',
-    nav: 'Products',
-    description:
-      'Derv, petrol, gas oil, HVO green and white, and bulk BluePlus AdBlue (tanker or 1,000L IBC) from Farrell Oils. Delivered across Ireland.',
-    changefreq: 'monthly',
-    priority: '0.9',
-  },
-  {
     path: '/get-a-quote',
     name: 'Get a Quote',
     nav: 'Get a Quote',
@@ -272,3 +263,6 @@ routes.push(
 );
 
 export const routeMeta = (path) => routes.find((r) => r.path === path);
+
+/** The Products menu item goes to the products section on the home page. */
+export const PRODUCTS_SECTION = '/#products';

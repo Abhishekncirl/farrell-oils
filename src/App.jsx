@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx';
-import Products from './pages/Products.jsx';
 import ProductPage from './pages/ProductPage.jsx';
 import GetAQuote from './pages/GetAQuote.jsx';
 import Contact from './pages/Contact.jsx';
@@ -26,7 +25,8 @@ export default function App() {
       />
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="products" element={<Products />} />
+        {/* The old Products page now lives on the home page. */}
+        <Route path="products" element={<Navigate to="/#products" replace />} />
         <Route path="products/:slug" element={<ProductPage />} />
         <Route path="get-a-quote" element={<GetAQuote />} />
         <Route path="contact" element={<Contact />} />
