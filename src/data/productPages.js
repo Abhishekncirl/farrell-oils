@@ -6,6 +6,7 @@
  * - `image`: photo in the feature panel instead of the branded graphic.
  * - `bannerImage`: faint background photo behind the page banner.
  * - `brandLogo`: { src, alt } brand logo shown in original colours in the banner.
+ * - `imageAlt` / `imageCaption`: describe the photo / small note under it.
  * Only use photos you have the rights to (your own, or properly licensed).
  */
 
@@ -96,6 +97,11 @@ export const productPages = {
   },
 
   hvo: {
+    image: 'products/hvo.webp',
+    imageAlt: 'HVO renewable diesel pump with a green HVO nozzle and a lorry in the background',
+    // The photo shows "Up to 90% lower CO2 emissions*", so explain the asterisk.
+    imageCaption:
+      '*Lifecycle CO₂ emissions compared with fossil diesel. Actual savings depend on how the HVO is produced.',
     subtitle: 'A renewable alternative to diesel',
     intro:
       "HVO (Hydrotreated Vegetable Oil) is a renewable diesel made from vegetable oils, waste fats and residues. It works in many diesel engines in place of conventional diesel, and it is one of the simplest ways for farms and businesses to reduce their carbon footprint. Farrell Oils supplies both HVO Green and HVO White.",

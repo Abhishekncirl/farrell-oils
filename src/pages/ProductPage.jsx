@@ -93,7 +93,7 @@ export default function ProductPage() {
       {/* Feature */}
       <section aria-labelledby="feature-heading" className="bg-brand-green-tint">
         <div className="container-page grid items-center gap-10 py-14 md:grid-cols-2">
-          <ProductVisual product={product} image={page.image} imageAlt={page.imageAlt} />
+          <ProductVisual product={product} image={page.image} imageAlt={page.imageAlt} caption={page.imageCaption} />
           <div>
             <Accent />
             <h2 id="feature-heading" className="mt-4 text-2xl font-extrabold uppercase text-ink sm:text-3xl">
@@ -186,14 +186,17 @@ export default function ProductPage() {
 }
 
 /** Product photo if supplied, otherwise a branded graphic. */
-function ProductVisual({ product, image, imageAlt }) {
+function ProductVisual({ product, image, imageAlt, caption }) {
   if (image) {
     return (
-      <img
-        src={`${base}${image}`}
-        alt={imageAlt ?? `${product.name} from ${site.name}`}
-        className="h-auto w-full rounded-2xl shadow-sm"
-      />
+      <figure>
+        <img
+          src={`${base}${image}`}
+          alt={imageAlt ?? `${product.name} from ${site.name}`}
+          className="h-auto w-full rounded-2xl shadow-sm"
+        />
+        {caption && <figcaption className="mt-2 text-sm text-gray-700">{caption}</figcaption>}
+      </figure>
     );
   }
   const green = product.accent !== 'blue';
