@@ -36,9 +36,10 @@ export default function ProductPage() {
             src={`${base}${page.bannerImage}`}
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-luminosity"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           />
         )}
+        {page.bannerImage && <div aria-hidden="true" className="absolute inset-0 bg-brand-blue/70" />}
         <div className="relative container-page py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm">
             <ol className="flex flex-wrap gap-2 text-white/90">
@@ -175,7 +176,7 @@ function ProductVisual({ product, image }) {
       <img
         src={`${base}${image}`}
         alt={`${product.name} from ${site.name}`}
-        className="aspect-[4/3] w-full rounded-2xl object-cover shadow-sm"
+        className="h-auto w-full rounded-2xl shadow-sm"
       />
     );
   }
