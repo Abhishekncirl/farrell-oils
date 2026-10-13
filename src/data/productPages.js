@@ -2,8 +2,10 @@
  * Content for each product page (/products/<slug>). Keyed by the product slug
  * in src/config/site.js. Text is original to Farrell Oils.
  *
- * Optional `image`: a path in /public (e.g. 'products/derv.jpg') to show a
- * photo in the feature panel instead of the branded graphic.
+ * Optional images (paths in /public, e.g. 'products/derv.webp'):
+ * - `image`: photo in the feature panel instead of the branded graphic.
+ * - `bannerImage`: faint background photo behind the page banner.
+ * Only use photos you have the rights to (your own, or properly licensed).
  */
 
 // Reasons that apply to every product; each page adds its own first.

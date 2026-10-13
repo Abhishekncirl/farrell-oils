@@ -29,9 +29,17 @@ export default function ProductPage() {
     <>
       <Seo path={`/products/${slug}`} />
 
-      {/* Banner */}
-      <div className="bg-brand-blue text-white">
-        <div className="container-page py-12 sm:py-16">
+      {/* Banner (optional faint background photo, like a watermark) */}
+      <div className="relative overflow-hidden bg-brand-blue text-white">
+        {page.bannerImage && (
+          <img
+            src={`${base}${page.bannerImage}`}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-luminosity"
+          />
+        )}
+        <div className="relative container-page py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm">
             <ol className="flex flex-wrap gap-2 text-white/90">
               <li>
@@ -54,7 +62,7 @@ export default function ProductPage() {
           <h1 className="mt-4 text-4xl font-extrabold uppercase tracking-wide sm:text-5xl">{product.name}</h1>
           {product.brand && <p className="mt-2 text-xl font-bold text-white">{product.brand}</p>}
         </div>
-        <Wave />
+        <Wave className="relative" />
       </div>
 
       {/* Intro */}
