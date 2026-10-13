@@ -5,6 +5,7 @@
  * Optional images (paths in /public, e.g. 'products/derv.webp'):
  * - `image`: photo in the feature panel instead of the branded graphic.
  * - `bannerImage`: faint background photo behind the page banner.
+ * - `brandLogo`: { src, alt } brand logo shown in original colours in the banner.
  * Only use photos you have the rights to (your own, or properly licensed).
  */
 
@@ -121,8 +122,8 @@ export const productPages = {
   adblue: {
     image: 'products/adblue.webp',
     imageAlt: 'BluePlus AdBlue in 5 litre, 10 litre and 18 litre containers',
-    // White knock-out of the BluePlus logo, shown faintly in the banner.
-    bannerLogo: 'products/blueplus-watermark.png',
+    // Brand logo in its original colours, shown in the banner.
+    brandLogo: { src: 'products/blueplus-logo.png', alt: 'BluePlus' },
     subtitle: 'From 5 litre containers to bulk tanker deliveries',
     intro:
       'AdBlue is a high-purity urea solution used by modern diesel vehicles and machinery with SCR (Selective Catalytic Reduction) systems to cut harmful NOx emissions. Farrell Oils supplies BluePlus AdBlue in 5, 10 and 18 litre containers, 1,000 litre IBCs and bulk by tanker.',

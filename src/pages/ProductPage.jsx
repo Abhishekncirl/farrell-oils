@@ -41,14 +41,6 @@ export default function ProductPage() {
           />
         )}
         {page.bannerImage && <div aria-hidden="true" className="absolute inset-0 bg-brand-blue/70" />}
-        {page.bannerLogo && (
-          <img
-            src={`${base}${page.bannerLogo}`}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute right-[-10%] bottom-[22%] w-[52%] max-w-3xl opacity-15 sm:top-1/2 sm:right-0 sm:bottom-auto sm:w-[55%] sm:-translate-y-1/2"
-          />
-        )}
         <div className="relative container-page py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm">
             <ol className="flex flex-wrap gap-2 text-white/90">
@@ -69,8 +61,21 @@ export default function ProductPage() {
               </li>
             </ol>
           </nav>
-          <h1 className="mt-4 text-4xl font-extrabold uppercase tracking-wide sm:text-5xl">{product.name}</h1>
-          {product.brand && <p className="mt-2 text-xl font-bold text-white">{product.brand}</p>}
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="mt-4 text-4xl font-extrabold uppercase tracking-wide sm:text-5xl">{product.name}</h1>
+              {product.brand && <p className="mt-2 text-xl font-bold text-white">{product.brand}</p>}
+            </div>
+            {page.brandLogo && (
+              <img
+                src={`${base}${page.brandLogo.src}`}
+                alt={page.brandLogo.alt}
+                width="300"
+                height="102"
+                className="h-auto w-44 sm:w-60 lg:w-72"
+              />
+            )}
+          </div>
         </div>
         <Wave className="relative" />
       </div>
