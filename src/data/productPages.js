@@ -54,6 +54,8 @@ export const productPages = {
   },
 
   petrol: {
+    // Freepik Premium licence (Farrell Oils subscription).
+    image: 'products/petrol.webp',
     subtitle: 'Unleaded petrol, supplied locally',
     intro:
       'Farrell Oils supplies unleaded petrol for cars, small vehicles and petrol-powered equipment. Talk to us about what you need and we will find the best way to supply you.',
