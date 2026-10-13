@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { site } from '../config/site.js';
 import { fillPhone, useContact } from '../context/ContactContext.jsx';
 import Seo from '../components/Seo.jsx';
@@ -33,6 +34,12 @@ export default function Products() {
                     ))}
                   </ul>
                 )}
+                <Link
+                  to={`/products/${p.slug}`}
+                  className="mt-3 inline-block font-bold text-brand-blue underline-offset-4 hover:text-brand-blue-dark hover:underline"
+                >
+                  More about {p.name} &rarr;
+                </Link>
               </div>
             </div>
           </section>

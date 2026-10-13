@@ -63,7 +63,7 @@ export default function Footer() {
           <div>
             <h2 className="text-lg font-bold">Quick links</h2>
             <ul className="mt-3 space-y-2 text-sm">
-              {routes.map((r) => (
+              {routes.filter((r) => !r.path.startsWith('/products/')).map((r) => (
                 <li key={r.path}>
                   <Link to={r.path} className="hover:underline">
                     {r.name}

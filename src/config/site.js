@@ -84,18 +84,21 @@ export const site = {
   products: [
     {
       slug: 'derv',
+      metaDescription: 'Derv (road diesel) delivered by Farrell Oils of Carrickmacross to fleets, hauliers, farms and businesses all across Ireland.',
       name: 'Derv',
       accent: 'blue',
       short: 'Clean, reliable road diesel for cars, vans, trucks and fleets. Keep your business on the road.',
     },
     {
       slug: 'petrol',
+      metaDescription: 'Unleaded petrol from Farrell Oils, Carrickmacross, Co. Monaghan. Ask us about supply and delivery across Ireland.',
       name: 'Petrol',
       accent: 'blue',
       short: 'Quality unleaded petrol for everyday driving and small machinery.',
     },
     {
       slug: 'gas-oil',
+      metaDescription: 'Marked gas oil (green diesel) for farms, plant and off-road machinery, delivered across Ireland by Farrell Oils of Carrickmacross.',
       name: 'Gas Oil',
       accent: 'green',
       short:
@@ -103,6 +106,7 @@ export const site = {
     },
     {
       slug: 'hvo',
+      metaDescription: 'HVO Green and HVO White, a renewable alternative to diesel, delivered across Ireland by Farrell Oils of Carrickmacross.',
       name: 'HVO',
       accent: 'green',
       short: 'HVO (Hydrotreated Vegetable Oil), a renewable alternative to diesel. Available in green and white.',
@@ -110,6 +114,7 @@ export const site = {
     },
     {
       slug: 'adblue',
+      metaDescription: 'Bulk BluePlus AdBlue delivered by tanker or in 1,000 litre IBCs by Farrell Oils of Carrickmacross. Nationwide delivery.',
       name: 'AdBlue',
       brand: 'BluePlus AdBlue',
       accent: 'blue',
@@ -124,6 +129,12 @@ export const site = {
     heroIntro:
       "Farrell Oils supplies Derv, Petrol, Gas Oil, HVO and BluePlus AdBlue to farms, businesses and homes from our base on Main Street, Carrickmacross. One call to Sean and it's sorted.",
     productsIntro: 'Delivered all across Ireland.',
+    storyHeading: 'About Farrell Oils',
+    story: [
+      "Farrell Oils is a local fuel supplier based in the O'Duffy Centre on Main Street, Carrickmacross, Co. Monaghan. From here we supply Derv, Petrol, Gas Oil, HVO and BluePlus AdBlue to farms, hauliers, contractors, businesses and homes, and we deliver all across Ireland, north and south.",
+      "We keep things simple. When you call Farrell Oils you talk to Sean, not a switchboard, and you get a clear, honest price. Whether it's a top-up for the tractor, a full load of diesel for your trucks, HVO for a business moving to a lower-carbon fuel, or bulk AdBlue by tanker or in 1,000 litre IBCs, we listen to what you need and get it to you.",
+      "Our customers trust us to keep their farms, fleets and machinery running, and we take that seriously. Fueling, powering, delivering: that's what we do, and we'd be glad to do it for you.",
+    ],
     whyChooseUs: [
       { title: 'Local', text: "Based in the O'Duffy Centre, Main Street, Carrickmacross." },
       { title: 'One name, one number', text: 'You deal with Sean, not a switchboard.' },
@@ -247,5 +258,17 @@ export const routes = [
     priority: '0.3',
   },
 ];
+
+// One page per product: /products/<slug>
+routes.push(
+  ...site.products.map((p) => ({
+    path: `/products/${p.slug}`,
+    name: p.brand ?? p.name,
+    nav: null,
+    description: p.metaDescription,
+    changefreq: 'monthly',
+    priority: '0.8',
+  })),
+);
 
 export const routeMeta = (path) => routes.find((r) => r.path === path);

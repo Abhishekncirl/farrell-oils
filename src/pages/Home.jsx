@@ -17,7 +17,7 @@ export default function Home() {
       {/* Hero */}
       <section aria-labelledby="hero-heading" className="relative overflow-hidden bg-brand-blue text-white">
         <div className="container-page py-16 sm:py-24">
-          <p className="text-lg font-bold text-brand-green-light">
+          <p className="text-xl font-bold text-brand-green-light">
             {site.name} · {contact.locality}, {contact.region}
           </p>
           <h1 id="hero-heading" className="mt-2 max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl">
@@ -35,6 +35,19 @@ export default function Home() {
           </div>
         </div>
         <Wave />
+      </section>
+
+      {/* Our story */}
+      <section aria-labelledby="story-heading" className="container-page py-16 text-center">
+        <span aria-hidden="true" className="mx-auto block h-1 w-14 rounded-full bg-brand-green" />
+        <h2 id="story-heading" className="mt-4 text-3xl font-extrabold text-brand-blue sm:text-4xl">
+          {site.copy.storyHeading}
+        </h2>
+        <div className="mx-auto mt-6 max-w-3xl space-y-5 text-lg leading-relaxed">
+          {site.copy.story.map((para) => (
+            <p key={para.slice(0, 24)}>{para}</p>
+          ))}
+        </div>
       </section>
 
       {/* Products */}

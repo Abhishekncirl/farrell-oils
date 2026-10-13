@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
       {product.brand && <p className="text-sm font-bold text-brand-green-dark">{product.brand}</p>}
       <p className="mt-2 flex-1 text-sm">{product.short}</p>
       <Link
-        to={`/products#${product.slug}`}
+        to={`/products/${product.slug}`}
         className="mt-4 font-bold text-brand-blue underline-offset-4 hover:text-brand-blue-dark hover:underline"
       >
         Read more<span className="sr-only"> about {product.name}</span> &rarr;
