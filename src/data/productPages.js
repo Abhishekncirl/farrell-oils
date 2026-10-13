@@ -119,19 +119,31 @@ export const productPages = {
   },
 
   adblue: {
-    subtitle: 'Bulk AdBlue by tanker or in 1,000 litre IBCs',
+    image: 'products/adblue.webp',
+    imageAlt: 'BluePlus AdBlue in 5 litre, 10 litre and 18 litre containers',
+    // White knock-out of the BluePlus logo, shown faintly in the banner.
+    bannerLogo: 'products/blueplus-watermark.png',
+    subtitle: 'From 5 litre containers to bulk tanker deliveries',
     intro:
-      'AdBlue is a high-purity urea solution used by modern diesel vehicles and machinery with SCR (Selective Catalytic Reduction) systems to cut harmful NOx emissions. Farrell Oils supplies BluePlus AdBlue in bulk, delivered by tanker or in 1,000 litre IBCs.',
-    featureTitle: 'Bulk supply for fleets and farms',
+      'AdBlue is a high-purity urea solution used by modern diesel vehicles and machinery with SCR (Selective Catalytic Reduction) systems to cut harmful NOx emissions. Farrell Oils supplies BluePlus AdBlue in 5, 10 and 18 litre containers, 1,000 litre IBCs and bulk by tanker.',
+    featureTitle: 'The right amount for every user',
     feature: [
-      "If your trucks, tractors or machinery use AdBlue, running out can stop them working. Buying in bulk keeps you supplied, saves trips to the forecourt and is usually better value than small containers.",
+      'If your trucks, tractors or machinery use AdBlue, running out can stop them working. Pick up handy 5, 10 or 18 litre containers for vans and smaller machines, or keep a fleet or farm supplied with 1,000 litre IBCs or bulk deliveries by tanker.',
       'Store AdBlue out of direct sunlight in a clean, sealed container, away from extreme heat and frost, so it stays in good condition.',
     ],
-    idealFor: ['Haulage fleets and trucks', 'Tractors and farm machinery', 'Construction plant', 'Bus and coach operators'],
+    idealFor: ['Haulage fleets and trucks', 'Tractors and farm machinery', 'Vans and company cars', 'Construction plant'],
+    // Shown as illustrated pack sizes. kind: can | ibc | tanker
+    sizes: [
+      { kind: 'can', litres: 5, label: '5 litre' },
+      { kind: 'can', litres: 10, label: '10 litre' },
+      { kind: 'can', litres: 18, label: '18 litre' },
+      { kind: 'ibc', label: '1,000 litre IBC' },
+      { kind: 'tanker', label: 'Bulk by tanker' },
+    ],
     benefits: [
       {
-        title: 'Tanker or IBC, your choice',
-        text: 'Bulk AdBlue delivered by tanker into your storage, or in 1,000 litre IBCs.',
+        title: 'Every size from 5 litres to a tanker',
+        text: '5, 10 and 18 litre containers, 1,000 litre IBCs, or bulk delivered by tanker into your storage.',
       },
     ],
     closing: 'Keep your fleet clean and compliant with BluePlus AdBlue from Farrell Oils. Call us or request a quote.',

@@ -4,6 +4,7 @@ import { productPage } from '../data/productPages.js';
 import Seo from '../components/Seo.jsx';
 import Wave from '../components/Wave.jsx';
 import CTASection from '../components/CTASection.jsx';
+import ProductSizes from '../components/ProductSizes.jsx';
 import NotFound from './NotFound.jsx';
 import { CheckIcon, DropIcon, PhoneIcon } from '../components/icons.jsx';
 import { useContact } from '../context/ContactContext.jsx';
@@ -40,6 +41,14 @@ export default function ProductPage() {
           />
         )}
         {page.bannerImage && <div aria-hidden="true" className="absolute inset-0 bg-brand-blue/70" />}
+        {page.bannerLogo && (
+          <img
+            src={`${base}${page.bannerLogo}`}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute right-[-10%] bottom-[22%] w-[52%] max-w-3xl opacity-15 sm:top-1/2 sm:right-0 sm:bottom-auto sm:w-[55%] sm:-translate-y-1/2"
+          />
+        )}
         <div className="relative container-page py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm">
             <ol className="flex flex-wrap gap-2 text-white/90">
@@ -79,7 +88,7 @@ export default function ProductPage() {
       {/* Feature */}
       <section aria-labelledby="feature-heading" className="bg-brand-green-tint">
         <div className="container-page grid items-center gap-10 py-14 md:grid-cols-2">
-          <ProductVisual product={product} image={page.image} />
+          <ProductVisual product={product} image={page.image} imageAlt={page.imageAlt} />
           <div>
             <Accent />
             <h2 id="feature-heading" className="mt-4 text-2xl font-extrabold uppercase text-ink sm:text-3xl">
@@ -102,6 +111,8 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      {page.sizes && <ProductSizes sizes={page.sizes} productName={displayName} />}
 
       {/* Why choose us */}
       <section aria-labelledby="benefits-heading" className="container-page py-14">
@@ -170,12 +181,12 @@ export default function ProductPage() {
 }
 
 /** Product photo if supplied, otherwise a branded graphic. */
-function ProductVisual({ product, image }) {
+function ProductVisual({ product, image, imageAlt }) {
   if (image) {
     return (
       <img
         src={`${base}${image}`}
-        alt={`${product.name} from ${site.name}`}
+        alt={imageAlt ?? `${product.name} from ${site.name}`}
         className="h-auto w-full rounded-2xl shadow-sm"
       />
     );

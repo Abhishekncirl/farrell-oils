@@ -114,12 +114,12 @@ export const site = {
     },
     {
       slug: 'adblue',
-      metaDescription: 'Bulk BluePlus AdBlue delivered by tanker or in 1,000 litre IBCs by Farrell Oils of Carrickmacross. Nationwide delivery.',
+      metaDescription: 'BluePlus AdBlue in 5L, 10L and 18L containers, 1,000L IBCs or bulk by tanker, from Farrell Oils of Carrickmacross. Nationwide delivery.',
       name: 'AdBlue',
       brand: 'BluePlus AdBlue',
       accent: 'blue',
       short: 'BluePlus AdBlue for modern diesel engines with SCR, keeping you compliant and running clean.',
-      points: ['Bulk AdBlue delivered by tanker', '1,000 litre IBCs'],
+      points: ['5L, 10L and 18L containers', '1,000 litre IBCs', 'Bulk delivery by tanker'],
     },
   ],
 
