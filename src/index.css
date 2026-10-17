@@ -57,7 +57,16 @@
 @layer components {
   /* Use as "btn btn-primary" etc. */
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-colors;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold;
+    transition:
+      transform 100ms ease-out,
+      background-color 150ms ease-out,
+      color 150ms ease-out,
+      border-color 150ms ease-out;
+  }
+  /* Instant feedback on press (also on touch screens, which have no hover). */
+  .btn:active {
+    transform: scale(0.97);
   }
   .btn-primary {
     @apply bg-brand-blue text-white hover:bg-brand-blue-dark;
@@ -77,17 +86,26 @@
   }
 }
 
-/* Delivery map: routes draw out from the base, then the base pin pulses. */
+/*
+ * Delivery map: when it scrolls into view (DeliveryMap adds .is-visible), the
+ * routes draw out from the base, then the base pin pulses three times and stops.
+ */
 @layer components {
   .delivery-route {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
+  }
+  .delivery-map.is-visible .delivery-route {
     animation: route-draw 1.2s ease-out forwards;
   }
   .delivery-pulse {
     transform-box: fill-box;
     transform-origin: center;
-    animation: pin-pulse 2.4s ease-out infinite;
+    opacity: 0;
+  }
+  .delivery-map.is-visible .delivery-pulse {
+    /* starts as the last route finishes (10 routes x 0.25s + 1.2s) */
+    animation: pin-pulse 2s ease-out 3.4s 3;
   }
 }
 
@@ -109,12 +127,71 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .delivery-route {
+  .delivery-route,
+  .delivery-map.is-visible .delivery-route {
     animation: none;
     stroke-dashoffset: 0;
   }
-  .delivery-pulse {
+  .delivery-map.is-visible .delivery-pulse {
     animation: none;
+  }
+  /* Press feedback without movement. */
+  .btn:active {
+    transform: none;
+    opacity: 0.85;
+  }
+}
+
+/*
+ * 4. Expandable answers (<details class="accordion">) reveal smoothly where the
+ * browser supports animating ::details-content; elsewhere they open instantly.
+ */
+@supports selector(::details-content) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  .accordion::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+    transition:
+      block-size 220ms ease-out,
+      opacity 220ms ease-out,
+      content-visibility 220ms allow-discrete;
+  }
+  .accordion[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .accordion::details-content {
+      transition: opacity 150ms ease-out, content-visibility 150ms allow-discrete;
+    }
+  }
+}
+
+/*
+ * 7. Sticky header as a frosted material: content scrolls underneath it.
+ * Solid white when blur isn't supported, or the user asks for less
+ * transparency or more contrast.
+ */
+@layer components {
+  .header-material {
+    background-color: rgb(255 255 255 / 0.8);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header-material {
+    background-color: #ffffff;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .header-material {
+    background-color: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 

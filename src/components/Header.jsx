@@ -28,7 +28,7 @@ export default function Header() {
     }`;
 
   return (
-    <header className="sticky top-0 z-40 bg-white shadow-sm">
+    <header className="header-material sticky top-0 z-40 shadow-sm">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2"
@@ -102,8 +102,20 @@ export default function Header() {
       </div>
 
       {/* Mobile nav */}
-      <nav id="mobile-nav" aria-label="Mobile" hidden={!open} className="border-t border-gray-100 lg:hidden">
-        <ul className="container-page space-y-1 py-3">
+      {/* Mobile nav: slides down from the header and back up the same way. */}
+      <nav
+        id="mobile-nav"
+        aria-label="Mobile"
+        className={`grid transition-[grid-template-rows,opacity,visibility] duration-200 ease-out motion-reduce:transition-opacity lg:hidden ${
+          open ? 'visible grid-rows-[1fr] opacity-100' : 'invisible grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <ul
+            className={`container-page space-y-1 border-t border-gray-100 py-3 transition-transform duration-200 ease-out motion-reduce:transition-none ${
+              open ? 'translate-y-0' : '-translate-y-2'
+            }`}
+          >
           {navItems.map((item) => (
             <li key={item.label}>
               <MenuLink item={item} location={location} className={navLinkClass} />
@@ -126,7 +138,8 @@ export default function Header() {
               Get a Quote
             </Link>
           </li>
-        </ul>
+          </ul>
+        </div>
       </nav>
     </header>
   );

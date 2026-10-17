@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { IRELAND_PATH, PLACES, VIEWBOX } from '../data/irelandMap.js';
 
 // Extra room on the right and top so the base label is not clipped.
@@ -20,13 +21,36 @@ function route([x1, y1], [x2, y2]) {
 
 /** Map of Ireland showing delivery routes out from Carrickmacross. */
 export default function DeliveryMap({ className = '' }) {
+  // Play the route animation when the map is actually on screen, not on page load.
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !('IntersectionObserver' in window)) {
+      setVisible(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <figure className={className}>
       <svg
         viewBox={PADDED_VIEWBOX}
         role="img"
         aria-labelledby="delivery-map-title"
-        className="delivery-map h-auto w-full"
+        ref={ref}
+        className={`delivery-map h-auto w-full ${visible ? 'is-visible' : ''}`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <title id="delivery-map-title">

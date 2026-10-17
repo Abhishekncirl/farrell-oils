@@ -63,7 +63,7 @@ export default function ProductPage() {
           </nav>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="mt-4 text-4xl font-extrabold uppercase tracking-wide sm:text-5xl">{product.name}</h1>
+              <h1 className="mt-4 text-4xl font-extrabold uppercase sm:text-5xl">{product.name}</h1>
               {product.brand && <p className="mt-2 text-xl font-bold text-white">{product.brand}</p>}
             </div>
             {page.brandLogo && (
@@ -129,13 +129,13 @@ export default function ProductPage() {
         <ol className="mt-6 grid gap-3 lg:grid-cols-2">
           {page.benefits.map((b, i) => (
             <li key={b.title}>
-              <details className="group rounded-lg bg-brand-blue text-white open:bg-brand-blue-dark">
+              <details className="accordion group rounded-lg bg-brand-blue text-white transition-colors duration-200 open:bg-brand-blue-dark">
                 <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 font-extrabold [&::-webkit-details-marker]:hidden">
                   <span className="w-6 shrink-0">{i + 1}.</span>
                   <span className="flex-1">{b.title}</span>
                   <span
                     aria-hidden="true"
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white text-xl leading-none text-brand-blue transition-transform group-open:rotate-45"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white text-xl leading-none text-brand-blue transition-transform duration-200 ease-out group-open:rotate-45"
                   >
                     +
                   </span>
@@ -208,7 +208,7 @@ function ProductVisual({ product, image, imageAlt, caption }) {
       } text-white shadow-sm`}
     >
       <DropIcon className={`h-28 w-18 ${green ? 'text-brand-green-light' : 'text-white'}`} />
-      <p className="mt-4 text-3xl font-extrabold uppercase tracking-wide">{product.name}</p>
+      <p className="mt-4 text-3xl font-extrabold uppercase">{product.name}</p>
       {product.points && (
         <ul className="mt-4 flex flex-wrap justify-center gap-2">
           {product.points.map((pt) => (
