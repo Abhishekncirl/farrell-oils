@@ -28,3 +28,6 @@ coverage/
 *.local
 *.suo
 *.sw?
+
+# Local reference files, not part of the site
+*.pdf
