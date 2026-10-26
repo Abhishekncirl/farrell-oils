@@ -36,6 +36,9 @@ const sharedBenefits = [
 
 export const productPages = {
   derv: {
+    // Farrell Oils' own tanker.
+    image: 'products/derv.webp',
+    imageAlt: 'Farrell Oils fuel tanker lorry in Farrell Oils livery under a blue sky',
     subtitle: 'Keeping Ireland moving',
     intro:
       'Derv is road diesel, the fuel that keeps cars, vans, trucks and buses on the road. Farrell Oils supplies derv in bulk to hauliers, fleets, contractors, farms and businesses, delivered straight into your own storage tank anywhere in Ireland.',
