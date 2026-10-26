@@ -81,6 +81,8 @@ export const productPages = {
   },
 
   'gas-oil': {
+    image: 'products/gas-oil.webp',
+    imageAlt: 'Green tractor pulling a cultivator across a stubble field',
     subtitle: 'Marked gas oil for farms, plant and machinery',
     intro:
       'Gas oil, often called green diesel, is marked fuel for agricultural and off-road use. Farrell Oils delivers gas oil to farms, contractors and businesses all across Ireland, keeping tractors, plant and machinery working.',
